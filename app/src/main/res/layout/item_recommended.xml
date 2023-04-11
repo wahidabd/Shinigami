@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="356dp"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="16dp"
+    android:layout_marginEnd="14dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginVertical="4dp"
+    android:layout_marginTop="4dp"
+    android:elevation="1dp"
+    android:background="?selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_linear_gray_16dp"/>
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:background="@drawable/bg_manhwa"
+            tools:text="Manhwa" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="@dimen/text_size_16sp"
+            tools:text="One Piece"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="12dp"/>
+        
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
