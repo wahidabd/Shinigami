@@ -5,4 +5,11 @@
     <string name="recommended">Recommended</string>
     <string name="latest_comic">Latest Comic</string>
     <string name="trending">Trending</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="history">History</string>
+    <string name="library">Library</string>
+    <string name="more">More..</string>
+    <string name="favorite">Favorite</string>
+    <string name="mirror">Mirror</string>
 </resources>

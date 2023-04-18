@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_menu">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_menu"
+    app:startDestination="@id/homeFragment">
 
 
-
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.wahidabd.shinigami.presentation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.wahidabd.shinigami.presentation.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.wahidabd.shinigami.presentation.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.wahidabd.shinigami.presentation.library.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.wahidabd.shinigami.presentation.more.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/comicFragment"
+        android:name="com.wahidabd.shinigami.presentation.comic.ComicFragment"
+        android:label="fragment_comic"
+        tools:layout="@layout/fragment_comic" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="order"
+            app:argType="string" />
+    </fragment>
 </navigation>

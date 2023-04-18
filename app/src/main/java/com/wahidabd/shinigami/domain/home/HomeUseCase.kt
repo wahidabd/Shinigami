@@ -12,7 +12,5 @@ import io.reactivex.rxjava3.core.Single
 
 
 interface HomeUseCase {
-    fun popularLatest(): Single<Pair<List<Komik>, List<Komik>>>
-    fun trendingMirror(): Single<Pair<List<Komik>, List<Komik>>>
     fun getHomeData(): Single<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>
 }

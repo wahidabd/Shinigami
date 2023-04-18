@@ -15,34 +15,6 @@ import io.reactivex.rxjava3.core.Single
 
 class HomeInteractor(private val repository: HomeRepository) : HomeUseCase {
 
-    override fun popularLatest(): Single<Pair<List<Komik>, List<Komik>>> {
-        return Single.zip(repository.getPopular(), repository.getLatest())
-        { popular, latest ->
-            Pair(
-                popular.map {
-                    it.toDomain()
-                },
-                latest.map {
-                    it.toDomain()
-                }
-            )
-        }
-    }
-
-    override fun trendingMirror(): Single<Pair<List<Komik>, List<Komik>>> {
-        return Single.zip(repository.getTrending(), repository.getMirror())
-        { trending, mirror ->
-            Pair(
-                trending.map {
-                    it.toDomain()
-                },
-                mirror.map {
-                    it.toDomain()
-                }
-            )
-        }
-    }
-
     override fun getHomeData(): Single<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>> {
         return Single.zip(
             repository.getPopular(),

@@ -24,19 +24,13 @@ class HomeViewModel(
     disposable: CompositeDisposable
 ) : BaseViewModel(disposable) {
 
-    private val _popularLatest = MutableLiveData<Resource<Pair<List<Komik>, List<Komik>>>>()
-    val popularLatest: LiveData<Resource<Pair<List<Komik>, List<Komik>>>> get() = _popularLatest
 
-    private val _trendingMirror = MutableLiveData<Resource<Pair<List<Komik>, List<Komik>>>>()
-    val trendingMirror: LiveData<Resource<Pair<List<Komik>, List<Komik>>>> get() = _trendingMirror
-
-    private val _homeData = MutableLiveData<Resource<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>>()
-    val homeData: LiveData<Resource< Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>> get() = _homeData
+    private val _homeData =
+        MutableLiveData<Resource<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>>()
+    val homeData: LiveData<Resource<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>> get() = _homeData
 
     init {
         _homeData.value = Resource.default()
-        _popularLatest.value = Resource.default()
-        _trendingMirror.value = Resource.default()
     }
 
     fun homeData() {
@@ -47,28 +41,6 @@ class HomeViewModel(
             .subscribe({
                 _homeData.value = Resource.success(it)
             }, { genericErrorHandler(it, _homeData) })
-            .addTo(disposable)
-    }
-
-    fun popularLatest() {
-        _popularLatest.value = Resource.loading()
-
-        useCase.popularLatest()
-            .compose(singleScheduler())
-            .subscribe({
-                _popularLatest.value = Resource.success(it)
-            }, { genericErrorHandler(it, _popularLatest) })
-            .addTo(disposable)
-    }
-
-    fun trendingMirror() {
-        _trendingMirror.value = Resource.loading()
-
-        useCase.trendingMirror()
-            .compose(singleScheduler())
-            .subscribe({
-                _trendingMirror.value = Resource.success(it)
-            }, { genericErrorHandler(it, _trendingMirror) })
             .addTo(disposable)
     }
 

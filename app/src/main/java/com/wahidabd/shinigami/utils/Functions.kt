@@ -3,7 +3,6 @@ package com.wahidabd.shinigami.utils
 import android.content.Context
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.wahidabd.library.utils.common.emptyString
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.shinigami.R
 
@@ -14,9 +13,9 @@ import com.wahidabd.shinigami.R
  */
 
 
-fun TextView.setTypeBackground(context: Context, type: String){
+fun TextView.setTypeBackground(context: Context, type: String) {
     this.text = type
-    when(type){
+    when (type) {
         "Manhwa" -> this.background = ContextCompat.getDrawable(context, R.drawable.bg_manhwa)
         "Manhua" -> this.background = ContextCompat.getDrawable(context, R.drawable.bg_manhua)
         "Manga" -> this.background = ContextCompat.getDrawable(context, R.drawable.bg_manga)

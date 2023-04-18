@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/swp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/primary"
+    tools:context=".presentation.comic.ComicFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkGray">
+        
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tvToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:titleTextColor="@color/white"/>
+        
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/msvComic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:msv_loadingView="@layout/layout_comic_placeholder"
+        app:msv_viewState="loading">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:clipToPadding="false"/>
+
+    </com.kennyc.view.MultiStateView>
+
+
+</LinearLayout>

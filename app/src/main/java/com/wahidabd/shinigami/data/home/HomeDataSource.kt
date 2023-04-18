@@ -106,15 +106,13 @@ class HomeDataSource : HomeRepository {
                 val eventSize = events.size
 
                 for (i in 0 until eventSize) {
-                    if (i > 8) {
-                        val slug = events.select(Constant.homeSlug).eq(i).attr(Constant.attrHref)
-                            .replace(Constant.baseUrl, "")
-                        val title = events.select(Constant.homeTitle).eq(i).text()
-                        val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
-                        val type = events.select(Constant.homeType).eq(i).text()
+                    val slug = events.select(Constant.homeSlug).eq(i).attr(Constant.attrHref)
+                        .replace(Constant.baseUrl, "")
+                    val title = events.select(Constant.homeTitle).eq(i).text()
+                    val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
+                    val type = events.select(Constant.homeType).eq(i).text()
 
-                        list.add(KomikItem(slug, title, cover, type))
-                    }
+                    list.add(KomikItem(slug, title, cover, type))
                 }
 
                 emitter.onSuccess(list)

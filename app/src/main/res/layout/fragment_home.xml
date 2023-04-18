@@ -54,15 +54,33 @@
                         android:clipToPadding="false"
                         tools:ignore="RtlSymmetry" />
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/latestContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/latest_comic"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_marginTop="22dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/ripple_primary_gray"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/latest_comic"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_chevron_small_right"
+                            app:tint="@color/white"/>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvLatest"
@@ -75,15 +93,33 @@
                         android:layout_marginEnd="@dimen/dimen_6dp"
                         android:clipToPadding="false"/>
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/trendingContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/trending"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/ripple_primary_gray"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/trending"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_chevron_small_right"
+                            app:tint="@color/white"/>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvPopular"
@@ -96,15 +132,33 @@
                         android:layout_marginEnd="@dimen/dimen_6dp"
                         android:clipToPadding="false"/>
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/mirrorContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/latest_comic"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_marginTop="22dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/ripple_primary_gray"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/mirror"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_chevron_small_right"
+                            app:tint="@color/white"/>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvMirror"
@@ -115,6 +169,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="@dimen/dimen_6dp"
+                        android:layout_marginBottom="24dp"
                         android:clipToPadding="false"/>
 
                 </LinearLayout>
