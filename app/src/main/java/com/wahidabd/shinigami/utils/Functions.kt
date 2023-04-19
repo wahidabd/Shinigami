@@ -1,9 +1,11 @@
 package com.wahidabd.shinigami.utils
 
 import android.content.Context
+import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.wahidabd.library.utils.exts.gone
+import com.wahidabd.library.utils.exts.visible
 import com.wahidabd.shinigami.R
 
 
@@ -21,5 +23,11 @@ fun TextView.setTypeBackground(context: Context, type: String) {
         "Manga" -> this.background = ContextCompat.getDrawable(context, R.drawable.bg_manga)
         "" -> this.gone()
         else -> this.background = ContextCompat.getDrawable(context, R.drawable.bg_manhwa)
+    }
+}
+
+fun View.visibleIf(condition: () -> Boolean){
+    if (this.visibility != View.FOCUSABLES_ALL && condition.invoke()){
+        this.visible()
     }
 }

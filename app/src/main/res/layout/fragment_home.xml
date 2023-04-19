@@ -17,9 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
-                layout="@layout/layout_home_header"/>
-
             <com.kennyc.view.MultiStateView
                 android:id="@+id/msvHome"
                 android:layout_width="match_parent"
@@ -32,13 +29,55 @@
                     android:orientation="vertical"
                     android:layout_marginTop="12dp">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgAvatar"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentStart="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@color/red" />
+
+
+                        <TextView
+                            android:id="@+id/tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/lightGray"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+                            app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+                            tools:text="Good Morning" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:maxLines="1"
+                            android:textColor="@color/lightGray"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+                            app:layout_constraintStart_toStartOf="@+id/tvStatus"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatus"
+                            tools:text="Abd. Wahid" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/recommended"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginTop="@dimen/dimen_14dp"
                         android:layout_marginHorizontal="16dp"
                         android:fontFamily="@font/poppins_medium"/>
 
