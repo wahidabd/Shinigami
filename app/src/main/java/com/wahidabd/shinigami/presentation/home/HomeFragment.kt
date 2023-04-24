@@ -2,21 +2,15 @@ package com.wahidabd.shinigami.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.library.presentation.fragment.BaseFragment
 import com.wahidabd.library.utils.common.showToast
-import com.wahidabd.library.utils.extensions.debug
 import com.wahidabd.library.utils.extensions.showDefaultState
 import com.wahidabd.library.utils.extensions.showLoadingState
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.library.utils.exts.onClick
-import com.wahidabd.shinigami.R
 import com.wahidabd.shinigami.databinding.FragmentHomeBinding
-import com.wahidabd.shinigami.presentation.MainActivity
-import com.wahidabd.shinigami.presentation.comic.ComicFragment
 import com.wahidabd.shinigami.presentation.home.adapter.LatestAdapter
 import com.wahidabd.shinigami.presentation.home.adapter.MirrorAdapter
 import com.wahidabd.shinigami.presentation.home.adapter.RecommendedAdapter
@@ -25,6 +19,7 @@ import com.wahidabd.shinigami.utils.Constant
 import com.wahidabd.shinigami.utils.Constant.LATEST_COMIC
 import com.wahidabd.shinigami.utils.Constant.MIRROR_COMIC
 import com.wahidabd.shinigami.utils.Constant.TRENDING_COMIC
+import com.wahidabd.shinigami.utils.Constant.orderMirror
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -34,28 +29,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val recommendedAdapter by lazy {
         RecommendedAdapter(
             requireContext(),
-            onItemClicked = {}
+            onItemClicked = { navigateToDetail(it) }
         )
     }
 
     private val latestAdapter by lazy {
         LatestAdapter(
             requireContext(),
-            onItemClicked = {}
+            onItemClicked = { navigateToDetail(it) }
         )
     }
 
     private val trendingAdapter by lazy {
         TrendingAdapter(
             requireContext(),
-            onItemClicked = {}
+            onItemClicked = { navigateToDetail(it) }
         )
     }
 
     private val mirrorAdapter by lazy {
         MirrorAdapter(
             requireContext(),
-            onItemClicked = {}
+            onItemClicked = { navigateToDetail(it) }
         )
     }
 
@@ -83,38 +78,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             rvPopular.apply {
                 adapter = trendingAdapter
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
 
             rvMirror.apply {
                 adapter = mirrorAdapter
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
 
         }
     }
 
     override fun initAction() {
-        with(binding){
-
-            latestContainer.onClick {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToComicFragment(LATEST_COMIC, Constant.orderLatest)
-                )
-            }
-
-            trendingContainer.onClick {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToComicFragment(TRENDING_COMIC, Constant.orderTrending)
-                )
-            }
-
-            mirrorContainer.onClick {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToComicFragment(MIRROR_COMIC, Constant.orderMirror)
-                )
-            }
-
+        with(binding) {
+            latestContainer.onClick { navigateToComic(LATEST_COMIC, Constant.orderLatest) }
+            trendingContainer.onClick { navigateToComic(TRENDING_COMIC, Constant.orderTrending) }
+            mirrorContainer.onClick { navigateToComic(MIRROR_COMIC, orderMirror) }
         }
     }
 
@@ -138,6 +119,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 trendingAdapter.setData = it.third
                 mirrorAdapter.setData = it.fourth
             }
+        )
+    }
+
+    private fun navigateToComic(label: String, order: String) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToComicFragment(label, order)
+        )
+    }
+
+    private fun navigateToDetail(slug: String) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToComicDetailFragment(slug)
         )
     }
 

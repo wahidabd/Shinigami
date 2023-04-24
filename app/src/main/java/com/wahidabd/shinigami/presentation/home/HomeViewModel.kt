@@ -8,7 +8,7 @@ import com.wahidabd.library.utils.exts.addTo
 import com.wahidabd.library.utils.rx.apihandlers.genericErrorHandler
 import com.wahidabd.library.utils.rx.transformers.singleScheduler
 import com.wahidabd.shinigami.domain.home.HomeUseCase
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.home.model.Comic
 import com.wahidabd.shinigami.utils.Quadruple
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -26,8 +26,8 @@ class HomeViewModel(
 
 
     private val _homeData =
-        MutableLiveData<Resource<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>>()
-    val homeData: LiveData<Resource<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>> get() = _homeData
+        MutableLiveData<Resource<Quadruple<List<Comic>, List<Comic>, List<Comic>, List<Comic>>>>()
+    val homeData: LiveData<Resource<Quadruple<List<Comic>, List<Comic>, List<Comic>, List<Comic>>>> get() = _homeData
 
     init {
         _homeData.value = Resource.default()

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_comicFragment"
             app:destination="@id/comicFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_comicDetailFragment"
+            app:destination="@id/comicDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -45,6 +48,18 @@
             app:argType="string" />
         <argument
             android:name="order"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comicFragment_to_comicDetailFragment"
+            app:destination="@id/comicDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicDetailFragment"
+        android:name="com.wahidabd.shinigami.presentation.comic.ComicDetailFragment"
+        android:label="fragment_comic_detail"
+        tools:layout="@layout/fragment_comic_detail" >
+        <argument
+            android:name="slug"
             app:argType="string" />
     </fragment>
 </navigation>

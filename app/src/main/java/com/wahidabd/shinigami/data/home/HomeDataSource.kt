@@ -2,7 +2,7 @@ package com.wahidabd.shinigami.data.home
 
 import com.wahidabd.library.data.LocalDb
 import com.wahidabd.library.data.WebApi
-import com.wahidabd.shinigami.data.home.model.KomikItem
+import com.wahidabd.shinigami.data.home.model.ComicItem
 import com.wahidabd.shinigami.utils.Constant
 import com.wahidabd.shinigami.utils.Constant.attrSrc
 import io.reactivex.rxjava3.core.Single
@@ -20,23 +20,23 @@ class HomeDataSource : HomeRepository {
     override val dbService: LocalDb? = null
     override val webService: WebApi? = null
 
-    override fun getPopular(): Single<List<KomikItem>> {
+    override fun getPopular(): Single<List<ComicItem>> {
         return Single.create { emitter ->
-            val list = ArrayList<KomikItem>()
+            val list = ArrayList<ComicItem>()
             try {
                 val doc = Jsoup.connect(Constant.baseUrl).get()
                 val events = doc.select(Constant.popularEvents)
                 val eventSize = events.size
 
                 for (i in 0 until eventSize) {
-                    if (i <= 8){
-                    val slug = events.select(Constant.homeSlug).eq(i).attr(Constant.attrHref)
-                        .replace(Constant.baseUrl, "")
-                    val title = events.select(Constant.homeTitle).eq(i).text()
-                    val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
-                    val type = events.select(Constant.homeType).eq(i).text()
+                    if (i <= 8) {
+                        val slug = events.select(Constant.homeSlug).eq(i).attr(Constant.attrHref)
+                            .replace(Constant.baseUrl, "")
+                        val title = events.select(Constant.homeTitle).eq(i).text()
+                        val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
+                        val type = events.select(Constant.homeType).eq(i).text()
 
-                    list.add(KomikItem(slug, title, cover, type))
+                        list.add(ComicItem(slug, title, cover, type))
                     }
                 }
 
@@ -47,9 +47,9 @@ class HomeDataSource : HomeRepository {
         }
     }
 
-    override fun getLatest(): Single<List<KomikItem>> {
+    override fun getLatest(): Single<List<ComicItem>> {
         return Single.create { emitter ->
-            val list = ArrayList<KomikItem>()
+            val list = ArrayList<ComicItem>()
             try {
                 val doc = Jsoup.connect(Constant.baseUrl).get()
                 val events = doc.select(Constant.latestEvents)
@@ -62,7 +62,7 @@ class HomeDataSource : HomeRepository {
                     val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
                     val type = events.select(Constant.homeType).eq(i).text()
 
-                    list.add(KomikItem(slug, title, cover, type))
+                    list.add(ComicItem(slug, title, cover, type))
                 }
 
                 emitter.onSuccess(list)
@@ -72,9 +72,9 @@ class HomeDataSource : HomeRepository {
         }
     }
 
-    override fun getTrending(): Single<List<KomikItem>> {
+    override fun getTrending(): Single<List<ComicItem>> {
         return Single.create { emitter ->
-            val list = ArrayList<KomikItem>()
+            val list = ArrayList<ComicItem>()
             try {
                 val doc = Jsoup.connect(Constant.baseUrl).get()
                 val events = doc.select(Constant.trendingEvents)
@@ -87,7 +87,7 @@ class HomeDataSource : HomeRepository {
                     val cover = events.select(Constant.trendingCover).eq(i).attr(attrSrc)
                     val rating = events.select(Constant.trendingStar).eq(i).text()
 
-                    list.add(KomikItem(slug, title, cover, rating = rating))
+                    list.add(ComicItem(slug, title, cover, rating = rating))
                 }
 
                 emitter.onSuccess(list)
@@ -97,9 +97,9 @@ class HomeDataSource : HomeRepository {
         }
     }
 
-    override fun getMirror(): Single<List<KomikItem>> {
+    override fun getMirror(): Single<List<ComicItem>> {
         return Single.create { emitter ->
-            val list = ArrayList<KomikItem>()
+            val list = ArrayList<ComicItem>()
             try {
                 val doc = Jsoup.connect(Constant.baseUrl).get()
                 val events = doc.select(Constant.mirrorEvents)
@@ -112,7 +112,7 @@ class HomeDataSource : HomeRepository {
                     val cover = events.select(Constant.homeCover).eq(i).attr(attrSrc)
                     val type = events.select(Constant.homeType).eq(i).text()
 
-                    list.add(KomikItem(slug, title, cover, type))
+                    list.add(ComicItem(slug, title, cover, type))
                 }
 
                 emitter.onSuccess(list)

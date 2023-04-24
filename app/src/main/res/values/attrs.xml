@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="HeaderDetail">
+        <attr name="iconLeft" format="reference"/>
+        <attr name="iconRight1" format="reference"/>
+        <attr name="iconRight2" format="reference"/>
+        <attr name="iconRight3" format="reference"/>
+        <attr name="authorIcon" format="reference"/>
+    </declare-styleable>
+    
+</resources>

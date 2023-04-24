@@ -26,6 +26,7 @@ object Constant {
     const val mirrorUrl = "https://shinigami.id/mirror/page/"
     const val attrHref = "href"
     const val attrSrc = "src"
+    const val attrDataSrc = "data-src"
 
     const val orderLatest = "/?m_orderby=latest"
     const val orderAlphabet = "/?m_orderby=alphabet"
@@ -53,4 +54,14 @@ object Constant {
     const val pagingSlugAndTitle = "div.item-summary > div.post-title.font-title > h3 > a"
     const val pagingCover = "div.page-item-detail.manga > div > a > img"
     const val pagingType = "div.page-item-detail.manga > a > span.manga-title-badges"
+
+    const val detailTitle = "div.post-title > h1"
+    const val detailType = "div.post-title > span"
+    const val detailSlug = "div.summary_image > a"
+    const val detailPoster = "div.summary_image > a > img"
+    const val detailBanner = "div.profile-manga"
+    const val detailSummary = "div.post-content_item > div.summary-content"
+    const val detailGenresEvent = "div.genres-content > a"
+    const val detailAuthor = "div.author-content > a"
+    const val detailSynopsis = "div.description-summary > div.summary__content > p"
 }

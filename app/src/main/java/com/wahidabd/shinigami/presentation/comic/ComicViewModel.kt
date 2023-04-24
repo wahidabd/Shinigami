@@ -8,8 +8,10 @@ import com.wahidabd.library.presentation.BaseViewModel
 import com.wahidabd.library.utils.exts.addTo
 import com.wahidabd.library.utils.rx.apihandlers.genericErrorHandler
 import com.wahidabd.library.utils.rx.transformers.observerScheduler
+import com.wahidabd.library.utils.rx.transformers.singleScheduler
 import com.wahidabd.shinigami.domain.comic.ComicUseCase
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.comic.model.ComicDetail
+import com.wahidabd.shinigami.domain.home.model.Comic
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 
@@ -24,13 +26,32 @@ class ComicViewModel(
     disposable: CompositeDisposable
 ) : BaseViewModel(disposable) {
 
-    private val _comic = MutableLiveData<PagingData<Komik>>()
-    val comic: LiveData<PagingData<Komik>> get() = _comic
+    private val _comic = MutableLiveData<PagingData<Comic>>()
+    val comic: LiveData<PagingData<Comic>> get() = _comic
+
+    private val _detail = MutableLiveData<Resource<ComicDetail>>()
+    val detail: LiveData<Resource<ComicDetail>> get() = _detail
+
+
+    init {
+        _detail.value = Resource.default()
+    }
+
 
     fun comic(order: String) {
         useCase.getPaging(order)
             .compose(observerScheduler())
             .subscribe { _comic.value = it }
+            .addTo(disposable)
+    }
+
+    fun detail(slug: String){
+        _detail.value = Resource.loading()
+
+        useCase.getDetail(slug).compose(singleScheduler())
+            .subscribe({
+                _detail.value = Resource.success(it)
+            }, { genericErrorHandler(it, _detail) })
             .addTo(disposable)
     }
 }

@@ -1,7 +1,7 @@
 package com.wahidabd.shinigami.domain.home.mapper
 
-import com.wahidabd.shinigami.data.home.model.KomikItem
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.data.home.model.ComicItem
+import com.wahidabd.shinigami.domain.home.model.Comic
 
 
 /**
@@ -10,5 +10,5 @@ import com.wahidabd.shinigami.domain.home.model.Komik
  */
 
 
-fun KomikItem.toDomain(): Komik =
-    Komik(slug, title, cover, type)
+fun ComicItem.toDomain(): Comic =
+    Comic(slug, title, cover, type)
