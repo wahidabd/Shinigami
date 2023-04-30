@@ -7,6 +7,7 @@ import androidx.paging.rxjava3.observable
 import com.wahidabd.library.data.LocalDb
 import com.wahidabd.library.data.WebApi
 import com.wahidabd.library.utils.common.emptyString
+import com.wahidabd.shinigami.data.comic.model.ChapterItem
 import com.wahidabd.shinigami.data.comic.model.ComicDetailItem
 import com.wahidabd.shinigami.data.home.model.ComicItem
 import com.wahidabd.shinigami.utils.Constant
@@ -44,6 +45,8 @@ class ComicDataSource : ComicRepository {
             var release = emptyString()
             var status = emptyString()
             var altenative = emptyString()
+            val genres = ArrayList<String>()
+            val chapter = ArrayList<ChapterItem>()
 
             try {
                 val doc = Jsoup.connect(Constant.baseUrl + slug).get()
@@ -52,7 +55,13 @@ class ComicDataSource : ComicRepository {
                 val mSlug = doc.select(Constant.detailSlug).attr(Constant.attrHref).replace(Constant.baseUrl, "")
                 val poster = doc.select(Constant.detailPoster).attr(Constant.attrDataSrc)
                 val author = doc.select(Constant.detailAuthor).text()
-                val synopsis = doc.select(Constant.detailSynopsis).text()
+                val synopsis1 = doc.select(Constant.detailSynopsis1).text()
+                val synopsis2 = doc.select(Constant.detailSynopsis2).text()
+                val synopsis = if (synopsis1.isNullOrEmpty()) synopsis2 else synopsis1
+                val genreEvents = doc.select(Constant.detailGenresEvent)
+                val genreSize = genreEvents.size
+                val chapterEvents = doc.select(Constant.chapterEvents)
+                val chapterSize = chapterEvents.size
 
                 doc.select(Constant.detailSummary).forEachIndexed { i, e ->
                     when(i){
@@ -62,10 +71,21 @@ class ComicDataSource : ComicRepository {
                     }
                 }
 
+                for (i in 0 until genreSize) genres.add(genreEvents.eq(i).text())
+
+                for (i in 0 until chapterSize) {
+                    val chTitle = chapterEvents.select(Constant.chapterTitle).eq(i).text()
+                    val chSlug = chapterEvents.select(Constant.chapterSlug).eq(i).attr(Constant.attrHref).replace(Constant.baseUrl,  "")
+                    val chImage = chapterEvents.select(Constant.chapterPoster).eq(i).attr(Constant.attrSrc)
+                    val chTime = chapterEvents.select(Constant.chapterTime).eq(i).text()
+
+                    chapter.add(ChapterItem(slug = chSlug, title = chTitle, imageCover = chImage, time = chTime))
+                }
+
                 emitter.onSuccess(ComicDetailItem(
                     slug = mSlug, title = title, imagePoster = poster, imageBanner = null,
-                    alternative = altenative, source = null, status = status,
-                    release = release, type = type, author = author, synopsis = synopsis
+                    alternative = altenative, source = null, status = status, genres = genres,
+                    release = release, type = type, author = author, synopsis = synopsis, chapters = chapter
                 ))
 
             }catch (e: Exception){

@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    tools:background="@color/primary"
     tools:context=".presentation.comic.ComicDetailFragment">
 
-    <com.wahidabd.shinigami.utils.customview.HeaderDetail
-        android:id="@+id/header"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:iconLeft="@drawable/ic_arrow_left"/>
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.wahidabd.shinigami.utils.customview.HeaderDetail
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconLeft="@drawable/ic_arrow_left" />
+
+            <TextView
+                android:id="@+id/tvSynopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins"
+                tools:maxLines="3"
+                android:justificationMode="inter_word"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:targetApi="o"
+                tools:text="@tools:sample/lorem/random" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_genre"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:clipToPadding="false"
+                tools:itemCount="1"
+                />
+
+            <TextView
+                android:id="@+id/tvTotalChapters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                tools:text="93 chapters"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_chapter"
+                tools:itemCount="3"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="@dimen/dimen_8dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

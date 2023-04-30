@@ -63,5 +63,13 @@ object Constant {
     const val detailSummary = "div.post-content_item > div.summary-content"
     const val detailGenresEvent = "div.genres-content > a"
     const val detailAuthor = "div.author-content > a"
-    const val detailSynopsis = "div.description-summary > div.summary__content > p"
+    const val detailSynopsis1 = "div.description-summary > div.summary__content > p"
+    const val detailSynopsis2 = "div.description-summary > div.summary__content > div"
+
+    const val chapterEvents = "li.wp-manga-chapter"
+    const val defaultChapterImage = "https://wuz.shinigami.id/wp-content/uploads/2022/03/20192032/THUMBNAIL.jpg"
+    const val chapterPoster = "div.chapter-thumbnail > img"
+    const val chapterSlug = "div.chapter-link > a"
+    const val chapterTitle = "div.chapter-link > a > p"
+    const val chapterTime = "div.chapter-link > a > span > i"
 }

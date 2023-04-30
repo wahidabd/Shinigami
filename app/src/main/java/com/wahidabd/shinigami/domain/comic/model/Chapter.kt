@@ -12,5 +12,5 @@ data class Chapter(
     val slug: String? = emptyString(),
     val imageCover: String? = emptyString(),
     val title: String? = emptyString(),
-    val releaseDate: String? = emptyString()
+    val time: String? = emptyString()
 )

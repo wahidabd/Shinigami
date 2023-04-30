@@ -109,7 +109,7 @@
             android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_10dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="60dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="2"
@@ -122,36 +122,60 @@
             tools:text="Beyond Myrad People Tuan Yi Feng" />
 
         <TextView
+            android:id="@+id/tvLabelAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            android:text="@string/label_author" />
+
+        <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_10dp"
-            android:layout_marginBottom="70dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/tvLabelAuthor"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="Kim Hi So" />
+
+        <TextView
+            android:id="@+id/tvLabelStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
+            android:text="@string/label" />
 
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_10dp"
-            android:layout_marginBottom="70dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/tvLabelStatus"
             app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
             tools:text="Ongoing" />
 

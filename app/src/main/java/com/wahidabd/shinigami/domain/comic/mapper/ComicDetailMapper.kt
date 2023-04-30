@@ -14,11 +14,11 @@ import com.wahidabd.shinigami.domain.comic.model.ComicDetail
 
 fun ComicDetailItem.toDomain(): ComicDetail =
     ComicDetail(
-        slug, title, imagePoster, imageBanner, alternative, source, status, release, type, author, synopsis,
+        slug, title, imagePoster, imageBanner, alternative, source, status, release, type, author, synopsis, genres,
         chapters?.map {
             it.toDomain()
         }
     )
 
 fun ChapterItem.toDomain(): Chapter =
-    Chapter(slug, imageCover, title, releaseDate)
+    Chapter(slug, imageCover, title, time)

@@ -3,7 +3,6 @@ package com.wahidabd.shinigami.utils.customview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.wahidabd.library.utils.common.emptyString
@@ -29,10 +28,13 @@ class HeaderDetail @JvmOverloads constructor(
 
     @DrawableRes
     var imgLeft = 0
+
     @DrawableRes
     var imgRight1 = 0
+
     @DrawableRes
     var imgRight2 = 0
+
     @DrawableRes
     var imgRight3 = 0
 
@@ -56,10 +58,10 @@ class HeaderDetail @JvmOverloads constructor(
         attributes.recycle()
     }
 
-    private fun setupView(){
-        with(binding){
+    private fun setupView() {
+        with(binding) {
 
-            if (imgLeft != 0){
+            if (imgLeft != 0) {
                 imgIconLeft.apply {
                     setBackgroundResource(imgLeft)
                     onClick {
@@ -68,7 +70,7 @@ class HeaderDetail @JvmOverloads constructor(
                 }
             }
 
-            if (imgRight1 != 0){
+            if (imgRight1 != 0) {
                 imgIconRight1.apply {
                     setBackgroundResource(imgRight1)
                     onClick {
@@ -77,7 +79,7 @@ class HeaderDetail @JvmOverloads constructor(
                 }
             }
 
-            if (imgRight2 != 0){
+            if (imgRight2 != 0) {
                 imgIconRight2.apply {
                     setBackgroundResource(imgRight2)
                     onClick {
@@ -86,7 +88,7 @@ class HeaderDetail @JvmOverloads constructor(
                 }
             }
 
-            if (imgRight2 != 0){
+            if (imgRight2 != 0) {
                 imgIconRight2.apply {
                     setBackgroundResource(imgRight2)
                     onClick {
@@ -98,7 +100,7 @@ class HeaderDetail @JvmOverloads constructor(
         }
     }
 
-    fun setLeftButton(onClicked: (() -> Unit)){
+    fun setLeftButton(onClicked: (() -> Unit)) {
         onIconLeftClicked = onClicked
     }
 
@@ -107,16 +109,20 @@ class HeaderDetail @JvmOverloads constructor(
         author: String,
         status: String,
         poster: String,
+        genres: List<String>?,
         banner: String? = emptyString()
     ) {
-        with(binding){
+        with(binding) {
             tvTitle.text = title
             tvAuthor.text = author
             tvStatus.text = status
+//
+//            genres?.forEach {
+//                tvGenre.append("$it, ")
+//            }
 
             imgPoster.setImageUrl(context, poster)
             imgBanner.setImageUrl(context, poster)
-//            imgBanner.setImageUrl(context, banner.toString())
         }
     }
 

@@ -21,5 +21,6 @@ data class ComicDetailItem(
     val type: String? = emptyString(),
     val author: String? = emptyString(),
     val synopsis: String? = emptyString(),
+    val genres: List<String>? = arrayListOf(),
     val chapters: List<ChapterItem>? = arrayListOf()
 )
