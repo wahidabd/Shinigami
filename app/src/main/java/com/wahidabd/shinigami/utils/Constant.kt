@@ -65,6 +65,7 @@ object Constant {
     const val detailAuthor = "div.author-content > a"
     const val detailSynopsis1 = "div.description-summary > div.summary__content > p"
     const val detailSynopsis2 = "div.description-summary > div.summary__content > div"
+    const val detailSynopsis3 = "div.description-summary > div.summary__content > blockquote > p"
 
     const val chapterEvents = "li.wp-manga-chapter"
     const val defaultChapterImage = "https://wuz.shinigami.id/wp-content/uploads/2022/03/20192032/THUMBNAIL.jpg"

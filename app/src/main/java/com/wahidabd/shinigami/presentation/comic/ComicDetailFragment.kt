@@ -10,6 +10,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.library.presentation.fragment.BaseFragment
 import com.wahidabd.library.utils.common.showToast
+import com.wahidabd.library.utils.extensions.showDefaultState
+import com.wahidabd.library.utils.extensions.showLoadingState
+import com.wahidabd.library.utils.exts.getCompatColor
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.R
 import com.wahidabd.shinigami.databinding.FragmentComicDetailBinding
@@ -55,12 +58,23 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
+
+            nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+                if (scrollY >= 90) {
+                    toolbar.setBackgroundColorResource(R.color.darkGray)
+                    toolbar.enableTitle(true)
+                } else {
+                    toolbar.setBackgroundColorResource()
+                    toolbar.enableTitle(false)
+                }
+            }
         }
+
     }
 
     override fun initAction() {
         with(binding) {
-            header.setLeftButton { findNavController().navigateUp() }
+            toolbar.setEnableBack { findNavController().navigateUp() }
         }
     }
 
@@ -73,18 +87,21 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
     override fun initObservers() {
         viewModel.detail.observerLiveData(viewLifecycleOwner,
             onEmpty = {},
-            onLoading = {},
+            onLoading = {
+                binding.msvDetail.showLoadingState()
+            },
             onFailure = { _, m ->
                 showToast(m.toString())
             },
             onSuccess = {
+                binding.msvDetail.showDefaultState()
                 setupHeader(it)
                 adapter.setData = it.chapters as List<Chapter>
                 genreAdapter.setData = it.genres as List<String>
                 binding.apply {
-                    tvTotalChapters.text =
-                        it.chapters.size.toString() + getString(R.string.chapters)
+                    tvTotalChapters.text = getString(R.string.format_chapters, it.chapters.size.toString())
                     tvSynopsis.setResizableText(it.synopsis.toString(), 4, true)
+                    toolbar.setTitle(it.title.toString())
                 }
             }
         )

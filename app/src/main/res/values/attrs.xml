@@ -8,5 +8,15 @@
         <attr name="iconRight3" format="reference"/>
         <attr name="authorIcon" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="MyToolbar">
+        <attr name="title" format="string"/>
+        <attr name="imgMain" format="reference"/>
+        <attr name="imgSecond" format="reference"/>
+        <attr name="toolbarType" format="enum">
+            <enum name="primary" value="0"/>
+            <enum name="transparant" value="1"/>
+        </attr>
+    </declare-styleable>
     
 </resources>

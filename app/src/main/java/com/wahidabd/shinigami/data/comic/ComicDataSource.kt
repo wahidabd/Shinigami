@@ -41,7 +41,6 @@ class ComicDataSource : ComicRepository {
     override fun getComic(slug: String): Single<ComicDetailItem> {
         return Single.create { emitter ->
 
-            var result =  ComicDetailItem()
             var release = emptyString()
             var status = emptyString()
             var altenative = emptyString()
@@ -57,7 +56,13 @@ class ComicDataSource : ComicRepository {
                 val author = doc.select(Constant.detailAuthor).text()
                 val synopsis1 = doc.select(Constant.detailSynopsis1).text()
                 val synopsis2 = doc.select(Constant.detailSynopsis2).text()
-                val synopsis = if (synopsis1.isNullOrEmpty()) synopsis2 else synopsis1
+                val synopsis3 = doc.select(Constant.detailSynopsis3).text()
+                val synopsis = when {
+                    synopsis1.isNotEmpty() -> synopsis1
+                    synopsis2.isNotEmpty() -> synopsis2
+                    synopsis3.isNotEmpty() -> synopsis3
+                    else -> "No Description"
+                }
                 val genreEvents = doc.select(Constant.detailGenresEvent)
                 val genreSize = genreEvents.size
                 val chapterEvents = doc.select(Constant.chapterEvents)
