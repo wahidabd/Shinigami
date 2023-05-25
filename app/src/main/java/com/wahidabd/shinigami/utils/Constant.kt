@@ -26,6 +26,7 @@ object Constant {
     const val mirrorUrl = "https://shinigami.id/mirror/page/"
     const val attrHref = "href"
     const val attrSrc = "src"
+    const val attrDataSrc = "data-src"
 
     const val orderLatest = "/?m_orderby=latest"
     const val orderAlphabet = "/?m_orderby=alphabet"
@@ -53,4 +54,28 @@ object Constant {
     const val pagingSlugAndTitle = "div.item-summary > div.post-title.font-title > h3 > a"
     const val pagingCover = "div.page-item-detail.manga > div > a > img"
     const val pagingType = "div.page-item-detail.manga > a > span.manga-title-badges"
+
+    const val detailTitle = "div.post-title > h1"
+    const val detailType = "div.post-title > span"
+    const val detailSlug = "div.summary_image > a"
+    const val detailPoster = "div.summary_image > a > img"
+    const val detailBanner = "div.profile-manga"
+    const val detailSummary = "div.post-content_item > div.summary-content"
+    const val detailGenresEvent = "div.genres-content > a"
+    const val detailAuthor = "div.author-content > a"
+    const val detailSynopsis1 = "div.description-summary > div.summary__content > p"
+    const val detailSynopsis2 = "div.description-summary > div.summary__content > div"
+    const val detailSynopsis3 = "div.description-summary > div.summary__content > blockquote > p"
+
+    const val chapterEvents = "li.wp-manga-chapter"
+    const val defaultChapterImage = "https://wuz.shinigami.id/wp-content/uploads/2022/03/20192032/THUMBNAIL.jpg"
+    const val chapterPoster = "div.chapter-thumbnail > img"
+    const val chapterSlug = "div.chapter-link > a"
+    const val chapterTitle = "div.chapter-link > a > p"
+    const val chapterTime = "div.chapter-link > a > span > i"
+
+    val readerPrev = "div.nav-previous > a"
+    val readerNext = "div.nav-next > a"
+    val readerEvents = "div.page-break.no-gaps"
+    val readerData = "img"
 }

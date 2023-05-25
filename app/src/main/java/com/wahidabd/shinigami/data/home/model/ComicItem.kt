@@ -1,4 +1,4 @@
-package com.wahidabd.shinigami.domain.home.model
+package com.wahidabd.shinigami.data.home.model
 
 import com.wahidabd.library.utils.common.emptyString
 
@@ -9,7 +9,7 @@ import com.wahidabd.library.utils.common.emptyString
  */
 
 
-data class Komik(
+data class ComicItem(
     val slug: String,
     val title: String,
     val cover: String,

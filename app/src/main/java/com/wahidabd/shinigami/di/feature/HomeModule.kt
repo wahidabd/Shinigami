@@ -1,4 +1,4 @@
-package com.wahidabd.shinigami.di
+package com.wahidabd.shinigami.di.feature
 
 import com.wahidabd.shinigami.data.home.HomeDataSource
 import com.wahidabd.shinigami.data.home.HomeRepository

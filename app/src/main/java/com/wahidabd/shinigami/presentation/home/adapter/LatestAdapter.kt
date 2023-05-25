@@ -9,7 +9,7 @@ import com.wahidabd.library.presentation.adapter.viewholder.BaseAsyncItemViewHol
 import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.setImageUrl
 import com.wahidabd.shinigami.databinding.ItemCardComicBinding
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.home.model.Comic
 
 
 /**
@@ -20,9 +20,9 @@ import com.wahidabd.shinigami.domain.home.model.Komik
 
 class LatestAdapter(
     private val context: Context,
-    items: List<Komik> = mutableListOf(),
+    items: List<Comic> = mutableListOf(),
     private val onItemClicked: ((String) -> Unit)?
-) : BaseAsyncRecyclerAdapter<Komik, LatestAdapter.ViewHolder>(items) {
+) : BaseAsyncRecyclerAdapter<Comic, LatestAdapter.ViewHolder>(items) {
 
     override fun getViewBinding(parent: ViewGroup, viewType: Int): ViewBinding {
         return ItemCardComicBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -32,8 +32,8 @@ class LatestAdapter(
         return ViewHolder(getViewBinding(parent, viewType))
     }
 
-    inner class ViewHolder(binding: ViewBinding) : BaseAsyncItemViewHolder<Komik>(binding) {
-        override fun bind(data: Komik) {
+    inner class ViewHolder(binding: ViewBinding) : BaseAsyncItemViewHolder<Comic>(binding) {
+        override fun bind(data: Comic) {
             with(binding as ItemCardComicBinding) {
                 tvTitle.text = data.title
                 imgCover.setImageUrl(context, data.cover, isCenterCrop = true)

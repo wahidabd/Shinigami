@@ -9,7 +9,7 @@ import com.wahidabd.library.presentation.adapter.viewholder.BaseAsyncItemViewHol
 import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.setImageUrl
 import com.wahidabd.shinigami.databinding.ItemComicBinding
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.home.model.Comic
 
 
 /**
@@ -21,7 +21,7 @@ import com.wahidabd.shinigami.domain.home.model.Komik
 class ComicPagingAdapter(
     private val context: Context,
     private val onItemClicked: ((String) -> Unit)?
-) : BasePagingRecyclerAdapter<Komik, ComicPagingAdapter.ViewHolder>() {
+) : BasePagingRecyclerAdapter<Comic, ComicPagingAdapter.ViewHolder>() {
 
     override fun getViewBinding(parent: ViewGroup, viewType: Int): ViewBinding {
         return ItemComicBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -36,8 +36,8 @@ class ComicPagingAdapter(
         else 1
     }
 
-    inner class ViewHolder(binding: ViewBinding) : BaseAsyncItemViewHolder<Komik>(binding) {
-        override fun bind(data: Komik) {
+    inner class ViewHolder(binding: ViewBinding) : BaseAsyncItemViewHolder<Comic>(binding) {
+        override fun bind(data: Comic) {
             with(binding as ItemComicBinding) {
                 imgAvatar.setImageUrl(context, data.cover)
                 tvTitle.text = data.title

@@ -1,10 +1,9 @@
 package com.wahidabd.shinigami.domain.comic
 
 import androidx.paging.PagingData
-import com.wahidabd.library.data.BaseRepository
-import com.wahidabd.shinigami.data.home.model.KomikItem
-import com.wahidabd.shinigami.domain.home.model.Komik
-import io.reactivex.rxjava3.core.Flowable
+import com.wahidabd.shinigami.domain.comic.model.ComicDetail
+import com.wahidabd.shinigami.domain.comic.model.Reader
+import com.wahidabd.shinigami.domain.home.model.Comic
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
@@ -17,6 +16,8 @@ import io.reactivex.rxjava3.core.Single
 
 interface ComicUseCase {
 
-    fun getPaging(order: String): Observable<PagingData<Komik>>
+    fun getPaging(order: String): Observable<PagingData<Comic>>
+    fun getDetail(slug: String): Single<ComicDetail>
+    fun reader(chapter: String): Single<Reader>
 
 }

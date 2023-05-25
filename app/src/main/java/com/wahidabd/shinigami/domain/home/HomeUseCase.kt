@@ -1,6 +1,6 @@
 package com.wahidabd.shinigami.domain.home
 
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.home.model.Comic
 import com.wahidabd.shinigami.utils.Quadruple
 import io.reactivex.rxjava3.core.Single
 
@@ -12,5 +12,5 @@ import io.reactivex.rxjava3.core.Single
 
 
 interface HomeUseCase {
-    fun getHomeData(): Single<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>>
+    fun getHomeData(): Single<Quadruple<List<Comic>, List<Comic>, List<Comic>, List<Comic>>>
 }

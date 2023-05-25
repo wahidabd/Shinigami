@@ -2,7 +2,7 @@ package com.wahidabd.shinigami.domain.home
 
 import com.wahidabd.shinigami.data.home.HomeRepository
 import com.wahidabd.shinigami.domain.home.mapper.toDomain
-import com.wahidabd.shinigami.domain.home.model.Komik
+import com.wahidabd.shinigami.domain.home.model.Comic
 import com.wahidabd.shinigami.utils.Quadruple
 import io.reactivex.rxjava3.core.Single
 
@@ -15,7 +15,7 @@ import io.reactivex.rxjava3.core.Single
 
 class HomeInteractor(private val repository: HomeRepository) : HomeUseCase {
 
-    override fun getHomeData(): Single<Quadruple<List<Komik>, List<Komik>, List<Komik>, List<Komik>>> {
+    override fun getHomeData(): Single<Quadruple<List<Comic>, List<Comic>, List<Comic>, List<Comic>>> {
         return Single.zip(
             repository.getPopular(),
             repository.getLatest(),
