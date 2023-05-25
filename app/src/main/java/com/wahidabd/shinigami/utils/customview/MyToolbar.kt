@@ -5,11 +5,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.wahidabd.library.utils.common.emptyString
 import com.wahidabd.library.utils.exts.getCompatColor
-import com.wahidabd.library.utils.exts.getCompatDrawable
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.visible
@@ -62,6 +62,7 @@ class MyToolbar @JvmOverloads constructor(
             when(type){
                 ToolbarType.PRIMARY -> setBackgroundPrimary()
                 ToolbarType.TRANSPARANT -> setBackgroundTransparant()
+                ToolbarType.GRAYOPACITY -> setBackgroundGrayOpacity()
             }
         }
     }
@@ -75,6 +76,16 @@ class MyToolbar @JvmOverloads constructor(
         else binding.tvTitle.gone()
     }
 
+    private fun setBackgroundGrayOpacity() {
+        binding.toolbar.apply {
+            setBackgroundColor(context.getColor(R.color.darkGrayOpacity))
+            binding.tvTitle.apply {
+                visible()
+                setTextColor(context.getColor(R.color.white))
+            }
+        }
+    }
+
     private fun setBackgroundTransparant() {
         binding.toolbar.apply {
             background = null
@@ -84,10 +95,10 @@ class MyToolbar @JvmOverloads constructor(
 
     private fun setBackgroundPrimary() {
         binding.toolbar.apply {
-            setBackgroundColor(context.getCompatColor(R.color.darkGray))
+            setBackgroundColor(context.getColor(R.color.darkGray))
             binding.tvTitle.apply {
                 visible()
-                setTextColor(context.getCompatColor(R.color.white))
+                setTextColor(context.getColor(R.color.white))
             }
         }
     }
@@ -103,10 +114,16 @@ class MyToolbar @JvmOverloads constructor(
         }
     }
 
-    fun setImageMainEnable(onClick: (() -> Unit)?) {
-        binding.iconMain.onClick {
+    fun setImageMainEnable(onClick: (() -> Unit)?) = with(binding.iconMain){
+        visible()
+        onClick {
             onClick?.invoke()
         }
+    }
+
+    fun setIconMain(@DrawableRes icon: Int) = with(binding.iconMain){
+        visible()
+        setImageDrawable(ContextCompat.getDrawable(context, icon))
     }
 
     fun setImageSecondaryEnable(onClick: (() -> Unit)?) {
@@ -117,7 +134,8 @@ class MyToolbar @JvmOverloads constructor(
 
     enum class ToolbarType {
         PRIMARY,
-        TRANSPARANT
+        TRANSPARANT,
+        GRAYOPACITY,
     }
 
 }

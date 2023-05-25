@@ -18,5 +18,5 @@ import io.reactivex.rxjava3.core.Single
 interface ComicRepository : BaseRepository {
     fun getPaging(order: String): Observable<PagingData<ComicItem>>
     fun getComic(slug: String): Single<ComicDetailItem>
-    fun reader(slug: String, chapter: String): Single<ReaderItem>
+    fun reader(chapter: String): Single<ReaderItem>
 }

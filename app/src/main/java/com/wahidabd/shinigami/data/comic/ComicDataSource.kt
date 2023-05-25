@@ -126,7 +126,7 @@ class ComicDataSource : ComicRepository {
         }
     }
 
-    override fun reader(slug: String, chapter: String): Single<ReaderItem> {
+    override fun reader(chapter: String): Single<ReaderItem> {
         return Single.create { emitter ->
             val readerItems = ArrayList<ContentReaderItem>()
             try {

@@ -16,6 +16,7 @@
         <attr name="toolbarType" format="enum">
             <enum name="primary" value="0"/>
             <enum name="transparant" value="1"/>
+            <enum name="grayOpacity" value="2"/>
         </attr>
     </declare-styleable>
     

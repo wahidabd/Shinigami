@@ -34,8 +34,8 @@ class ComicInteractor(private val data: ComicRepository) : ComicUseCase {
         }
     }
 
-    override fun reader(slug: String, chapter: String): Single<Reader> {
-        return data.reader(slug, chapter).map {
+    override fun reader(chapter: String): Single<Reader> {
+        return data.reader(chapter).map {
             it.toDomain()
         }
     }

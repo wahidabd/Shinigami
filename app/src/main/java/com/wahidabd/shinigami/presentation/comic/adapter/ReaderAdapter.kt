@@ -7,6 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.wahidabd.library.presentation.adapter.BaseAsyncRecyclerAdapter
 import com.wahidabd.library.presentation.adapter.viewholder.BaseAsyncItemViewHolder
 import com.wahidabd.library.utils.extensions.debug
+import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.setImageUrl
 import com.wahidabd.shinigami.databinding.ItemReaderBinding
 import com.wahidabd.shinigami.domain.comic.model.ContentReader
@@ -22,7 +23,8 @@ import com.wahidabd.shinigami.utils.setImageReader
 
 class ReaderAdapter(
     private val context: Context,
-    items: List<ContentReader> = mutableListOf()
+    items: List<ContentReader> = mutableListOf(),
+    private val onClicked: (() -> Unit)? = null
 ) : BaseAsyncRecyclerAdapter<ContentReader, ReaderAdapter.ViewHolder>(items) {
 
     override fun getViewBinding(parent: ViewGroup, viewType: Int): ViewBinding {
@@ -42,7 +44,10 @@ class ReaderAdapter(
             with(binding as ItemReaderBinding) {
                 val progress = context.circularProgress()
                 imgSource.setImageReader(data.image, progress)
-                debug { data.image }
+
+                root.onClick {
+                    onClicked?.invoke()
+                }
             }
         }
     }

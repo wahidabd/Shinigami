@@ -9,17 +9,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.library.presentation.fragment.BaseFragment
+import com.wahidabd.library.utils.common.emptyString
 import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.extensions.showDefaultState
 import com.wahidabd.library.utils.extensions.showLoadingState
-import com.wahidabd.library.utils.exts.getCompatColor
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.R
 import com.wahidabd.shinigami.databinding.FragmentComicDetailBinding
 import com.wahidabd.shinigami.domain.comic.model.Chapter
 import com.wahidabd.shinigami.domain.comic.model.ComicDetail
+import com.wahidabd.shinigami.domain.favorite.model.Favorite
 import com.wahidabd.shinigami.presentation.comic.adapter.ChapterAdapter
 import com.wahidabd.shinigami.presentation.comic.adapter.GenreAdapter
+import com.wahidabd.shinigami.presentation.favorite.FavoriteViewModel
 import com.wahidabd.shinigami.utils.customview.setResizableText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,12 +29,18 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
     private val args: ComicDetailFragmentArgs by navArgs()
     private val viewModel: ComicViewModel by viewModel()
+    private val favoriteViewModel: FavoriteViewModel by viewModel()
+
+    private var favorite = Favorite()
+    private var isFavorite = false
+
+    private var title = emptyString()
 
     private val adapter by lazy {
         ChapterAdapter(
             requireContext(),
             onItemClicked = {
-                navToReader(args.slug, it)
+                navToReader(it, title)
             }
         )
     }
@@ -78,11 +86,13 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
     override fun initAction() {
         with(binding) {
             toolbarContainer.setEnableBack { findNavController().navigateUp() }
+            toolbarContainer.setImageMainEnable { setFavorite() }
         }
     }
 
     override fun initProcess() {
         viewModel.detail(args.slug)
+        favoriteViewModel.get(args.slug)
     }
 
     @SuppressLint("SetTextI18n")
@@ -98,14 +108,42 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
             },
             onSuccess = {
                 binding.msvDetail.showDefaultState()
+                title = it.title.toString()
                 setupHeader(it)
                 adapter.setData = it.chapters as List<Chapter>
                 genreAdapter.setData = it.genres as List<String>
                 binding.apply {
-                    tvTotalChapters.text = getString(R.string.format_chapters, it.chapters.size.toString())
+                    tvTotalChapters.text =
+                        getString(R.string.format_chapters, it.chapters.size.toString())
                     tvSynopsis.setResizableText(it.synopsis.toString(), 4, true)
                     toolbarContainer.setTitle(it.title.toString())
                 }
+
+                favorite = Favorite(slug = it.slug, title = it.title, poster = it.imagePoster)
+            }
+        )
+
+        favoriteViewModel.add.observerLiveData(viewLifecycleOwner,
+            onEmpty = {},
+            onFailure = {_, m ->
+                showToast(m.toString())
+            },
+            onLoading = {},
+            onSuccess = {
+                showToast(getString(R.string.message_success_add_favorite))
+            }
+        )
+
+        favoriteViewModel.get.observerLiveData(viewLifecycleOwner,
+            onEmpty = {},
+            onLoading = {},
+            onFailure = {_,_ ->
+                isFavorite = false
+                checkFavorite()
+            },
+            onSuccess = {
+                isFavorite = true
+                checkFavorite()
             }
         )
     }
@@ -124,9 +162,22 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
         }
     }
 
-    private fun navToReader(slug: String, ch: String){
+    private fun setFavorite() {
+        if (!isFavorite) favoriteViewModel.add(favorite)
+        else favoriteViewModel.remove(favorite)
+
+        isFavorite = !isFavorite
+        checkFavorite()
+    }
+
+    private fun checkFavorite() = with(binding.toolbarContainer) {
+        if (isFavorite) setIconMain(R.drawable.ic_favorite_fill)
+        else setIconMain(R.drawable.ic_favorite_outline)
+    }
+
+    private fun navToReader(ch: String, title: String) {
         findNavController().navigate(
-            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(slug, ch)
+            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(ch, title)
         )
     }
 }

@@ -17,4 +17,5 @@
     <string name="label_author">Author:</string>
     <string name="label">Ongoing:</string>
     <string name="genres">Genres:</string>
+    <string name="message_success_add_favorite">Success add to favorite</string>
 </resources>

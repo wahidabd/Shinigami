@@ -45,7 +45,7 @@ fun View.visibleIf(condition: () -> Boolean){
 fun Context.circularProgress(): CircularProgressDrawable {
     val circular = CircularProgressDrawable(this)
     circular.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightGray))
-    circular.strokeWidth = 8f
+    circular.strokeWidth = 10f
     circular.centerRadius = 40f
     circular.start()
 
@@ -64,4 +64,11 @@ fun ImageView.setImageReader(image: String, progressDrawable: CircularProgressDr
         .downsample(DownsampleStrategy.AT_MOST)
         .override(Target.SIZE_ORIGINAL)
         .into(this)
+}
+
+fun View.animateTranslationY(alpha: Float){
+    this.animate()
+        .translationY(this.height.toFloat())
+        .alpha(alpha)
+        .duration = 200
 }

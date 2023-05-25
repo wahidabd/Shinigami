@@ -59,10 +59,10 @@ class ComicViewModel(
             .addTo(disposable)
     }
 
-    fun reader(slug: String, chapter: String) {
+    fun reader(chapter: String) {
         _reader.value = Resource.loading()
 
-        useCase.reader(slug, chapter)
+        useCase.reader(chapter)
             .compose(singleScheduler())
             .subscribe({
                 _reader.value = Resource.success(it)

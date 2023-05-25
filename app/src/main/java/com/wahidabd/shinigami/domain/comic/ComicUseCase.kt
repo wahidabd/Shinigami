@@ -18,6 +18,6 @@ interface ComicUseCase {
 
     fun getPaging(order: String): Observable<PagingData<Comic>>
     fun getDetail(slug: String): Single<ComicDetail>
-    fun reader(slug: String, chapter: String): Single<Reader>
+    fun reader(chapter: String): Single<Reader>
 
 }
