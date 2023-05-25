@@ -36,7 +36,7 @@ class MyToolbar @JvmOverloads constructor(
     private var title = emptyString()
     private var type: ToolbarType = ToolbarType.PRIMARY
 
-    lateinit var toolbar: MaterialToolbar
+    private lateinit var toolbar: MaterialToolbar
 
     init {
         binding = LayoutMyToolbarBinding.inflate(LayoutInflater.from(context), this)

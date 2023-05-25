@@ -73,4 +73,9 @@ object Constant {
     const val chapterSlug = "div.chapter-link > a"
     const val chapterTitle = "div.chapter-link > a > p"
     const val chapterTime = "div.chapter-link > a > span > i"
+
+    val readerPrev = "div.nav-previous > a"
+    val readerNext = "div.nav-next > a"
+    val readerEvents = "div.page-break.no-gaps"
+    val readerData = "img"
 }

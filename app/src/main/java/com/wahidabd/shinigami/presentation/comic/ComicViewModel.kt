@@ -11,6 +11,7 @@ import com.wahidabd.library.utils.rx.transformers.observerScheduler
 import com.wahidabd.library.utils.rx.transformers.singleScheduler
 import com.wahidabd.shinigami.domain.comic.ComicUseCase
 import com.wahidabd.shinigami.domain.comic.model.ComicDetail
+import com.wahidabd.shinigami.domain.comic.model.Reader
 import com.wahidabd.shinigami.domain.home.model.Comic
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -32,9 +33,12 @@ class ComicViewModel(
     private val _detail = MutableLiveData<Resource<ComicDetail>>()
     val detail: LiveData<Resource<ComicDetail>> get() = _detail
 
+    private val _reader = MutableLiveData<Resource<Reader>>()
+    val reader: LiveData<Resource<Reader>> get() = _reader
 
     init {
         _detail.value = Resource.default()
+        _reader.value = Resource.default()
     }
 
 
@@ -45,13 +49,24 @@ class ComicViewModel(
             .addTo(disposable)
     }
 
-    fun detail(slug: String){
+    fun detail(slug: String) {
         _detail.value = Resource.loading()
 
         useCase.getDetail(slug).compose(singleScheduler())
             .subscribe({
                 _detail.value = Resource.success(it)
             }, { genericErrorHandler(it, _detail) })
+            .addTo(disposable)
+    }
+
+    fun reader(slug: String, chapter: String) {
+        _reader.value = Resource.loading()
+
+        useCase.reader(slug, chapter)
+            .compose(singleScheduler())
+            .subscribe({
+                _reader.value = Resource.success(it)
+            }, { genericErrorHandler(it, _reader) })
             .addTo(disposable)
     }
 }

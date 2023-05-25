@@ -5,6 +5,7 @@ import androidx.paging.map
 import com.wahidabd.shinigami.data.comic.ComicRepository
 import com.wahidabd.shinigami.domain.comic.mapper.toDomain
 import com.wahidabd.shinigami.domain.comic.model.ComicDetail
+import com.wahidabd.shinigami.domain.comic.model.Reader
 import com.wahidabd.shinigami.domain.home.mapper.toDomain
 import com.wahidabd.shinigami.domain.home.model.Comic
 import io.reactivex.rxjava3.core.Observable
@@ -29,6 +30,12 @@ class ComicInteractor(private val data: ComicRepository) : ComicUseCase {
 
     override fun getDetail(slug: String): Single<ComicDetail> {
         return data.getComic(slug).map {
+            it.toDomain()
+        }
+    }
+
+    override fun reader(slug: String, chapter: String): Single<Reader> {
+        return data.reader(slug, chapter).map {
             it.toDomain()
         }
     }

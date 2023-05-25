@@ -31,7 +31,9 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
     private val adapter by lazy {
         ChapterAdapter(
             requireContext(),
-            onItemClicked = {}
+            onItemClicked = {
+                navToReader(args.slug, it)
+            }
         )
     }
 
@@ -53,6 +55,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
                 adapter = this@ComicDetailFragment.adapter
                 layoutManager = LinearLayoutManager(requireContext())
             }
+
             rvGenre.apply {
                 adapter = genreAdapter
                 layoutManager =
@@ -61,11 +64,11 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
             nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
                 if (scrollY >= 90) {
-                    toolbar.setBackgroundColorResource(R.color.darkGray)
-                    toolbar.enableTitle(true)
+                    toolbarContainer.setBackgroundColorResource(R.color.darkGray)
+                    toolbarContainer.enableTitle(true)
                 } else {
-                    toolbar.setBackgroundColorResource()
-                    toolbar.enableTitle(false)
+                    toolbarContainer.setBackgroundColorResource()
+                    toolbarContainer.enableTitle(false)
                 }
             }
         }
@@ -74,7 +77,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
     override fun initAction() {
         with(binding) {
-            toolbar.setEnableBack { findNavController().navigateUp() }
+            toolbarContainer.setEnableBack { findNavController().navigateUp() }
         }
     }
 
@@ -101,7 +104,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
                 binding.apply {
                     tvTotalChapters.text = getString(R.string.format_chapters, it.chapters.size.toString())
                     tvSynopsis.setResizableText(it.synopsis.toString(), 4, true)
-                    toolbar.setTitle(it.title.toString())
+                    toolbarContainer.setTitle(it.title.toString())
                 }
             }
         )
@@ -119,5 +122,11 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
                 banner = imageBanner.toString()
             )
         }
+    }
+
+    private fun navToReader(slug: String, ch: String){
+        findNavController().navigate(
+            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(slug, ch)
+        )
     }
 }

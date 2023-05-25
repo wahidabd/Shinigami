@@ -61,5 +61,20 @@
         <argument
             android:name="slug"
             app:argType="string" />
+        <action
+            android:id="@+id/action_comicDetailFragment_to_comicReaderFragment"
+            app:destination="@id/comicReaderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicReaderFragment"
+        android:name="com.wahidabd.shinigami.presentation.comic.ComicReaderFragment"
+        android:label="fragment_comic_reader"
+        tools:layout="@layout/fragment_comic_reader" >
+        <argument
+            android:name="slug"
+            app:argType="string" />
+        <argument
+            android:name="chapter"
+            app:argType="string" />
     </fragment>
 </navigation>
