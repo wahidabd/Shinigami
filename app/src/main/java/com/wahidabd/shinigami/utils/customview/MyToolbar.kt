@@ -9,7 +9,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.wahidabd.library.utils.common.emptyString
-import com.wahidabd.library.utils.exts.getCompatColor
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.visible
@@ -62,7 +61,7 @@ class MyToolbar @JvmOverloads constructor(
             when(type){
                 ToolbarType.PRIMARY -> setBackgroundPrimary()
                 ToolbarType.TRANSPARANT -> setBackgroundTransparant()
-                ToolbarType.GRAYOPACITY -> setBackgroundGrayOpacity()
+                ToolbarType.OPACITY -> setBackgroundOpacity()
             }
         }
     }
@@ -76,9 +75,21 @@ class MyToolbar @JvmOverloads constructor(
         else binding.tvTitle.gone()
     }
 
-    private fun setBackgroundGrayOpacity() {
+    fun enableIcon(state: Boolean) = with(binding) {
+        if (state) {
+            toolbar.gone()
+            iconMain.gone()
+            iconSecondary.gone()
+        } else {
+            toolbar.visible()
+            iconMain.visible()
+            iconSecondary.visible()
+        }
+    }
+
+    private fun setBackgroundOpacity() {
         binding.toolbar.apply {
-            setBackgroundColor(context.getColor(R.color.darkGrayOpacity))
+            setBackgroundColor(context.getColor(R.color.primaryOpacity))
             binding.tvTitle.apply {
                 visible()
                 setTextColor(context.getColor(R.color.white))
@@ -95,7 +106,7 @@ class MyToolbar @JvmOverloads constructor(
 
     private fun setBackgroundPrimary() {
         binding.toolbar.apply {
-            setBackgroundColor(context.getColor(R.color.darkGray))
+            setBackgroundColor(context.getColor(R.color.darkBlue))
             binding.tvTitle.apply {
                 visible()
                 setTextColor(context.getColor(R.color.white))
@@ -135,7 +146,7 @@ class MyToolbar @JvmOverloads constructor(
     enum class ToolbarType {
         PRIMARY,
         TRANSPARANT,
-        GRAYOPACITY,
+        OPACITY,
     }
 
 }

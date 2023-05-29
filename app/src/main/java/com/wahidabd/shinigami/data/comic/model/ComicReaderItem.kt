@@ -12,6 +12,7 @@ import com.wahidabd.library.utils.common.emptyString
 data class ReaderItem(
     val prev: String? = emptyString(),
     val next: String? = emptyString(),
+    val title: String? = emptyString(),
     val items: List<ContentReaderItem>
 )
 

@@ -9,18 +9,11 @@
     tools:context=".presentation.comic.ComicFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.wahidabd.shinigami.utils.customview.MyToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkGray">
-        
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tvToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:titleTextColor="@color/white"/>
-        
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="?actionBarSize"
+        app:toolbarType="primary"/>
 
     <com.kennyc.view.MultiStateView
         android:id="@+id/msvComic"

@@ -10,8 +10,9 @@
     <com.kennyc.view.MultiStateView
         android:id="@+id/msv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:msv_emptyView="@layout/layout_empty">
+        android:layout_height="match_parent"
+        app:msv_emptyView="@layout/layout_empty"
+        app:msv_viewState="empty">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavorite"

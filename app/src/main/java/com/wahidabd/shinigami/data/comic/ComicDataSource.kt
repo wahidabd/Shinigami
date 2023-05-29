@@ -137,6 +137,7 @@ class ComicDataSource : ComicRepository {
 
                 val prevEvent = doc.select(Constant.readerPrev).attr(Constant.attrHref)
                 val nextEvent = doc.select(Constant.readerNext).attr(Constant.attrHref)
+                val header = doc.select(Constant.readerTitle).text()
 
                 val prev: String? = prevEvent ?: null
                 val next: String? = nextEvent ?: null
@@ -155,6 +156,7 @@ class ComicDataSource : ComicRepository {
                     ReaderItem(
                         prev,
                         next,
+                        header,
                         readerItems
                     )
                 )

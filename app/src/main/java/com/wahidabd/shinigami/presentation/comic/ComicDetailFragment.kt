@@ -72,7 +72,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
             nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
                 if (scrollY >= 90) {
-                    toolbarContainer.setBackgroundColorResource(R.color.darkGray)
+                    toolbarContainer.setBackgroundColorResource(R.color.darkBlue)
                     toolbarContainer.enableTitle(true)
                 } else {
                     toolbarContainer.setBackgroundColorResource()
@@ -129,9 +129,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
                 showToast(m.toString())
             },
             onLoading = {},
-            onSuccess = {
-                showToast(getString(R.string.message_success_add_favorite))
-            }
+            onSuccess = {}
         )
 
         favoriteViewModel.get.observerLiveData(viewLifecycleOwner,

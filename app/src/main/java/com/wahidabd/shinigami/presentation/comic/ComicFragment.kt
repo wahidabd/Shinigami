@@ -50,12 +50,9 @@ class ComicFragment : BaseFragment<FragmentComicBinding>() {
                 }
         }
 
-        binding.tvToolbar.apply {
-            title = args.title
-            setNavigationIcon(R.drawable.ic_arrow_left)
-            setNavigationOnClickListener {
-                findNavController().navigateUp()
-            }
+        binding.toolbar.apply {
+            setTitle(args.title)
+            setEnableBack { findNavController().navigateUp() }
         }
 
         binding.rvComic.apply {

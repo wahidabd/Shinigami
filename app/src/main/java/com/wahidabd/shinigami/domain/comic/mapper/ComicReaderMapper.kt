@@ -16,6 +16,7 @@ fun ReaderItem.toDomain(): Reader {
     return Reader(
         prev = prev,
         next = next,
+        title = title,
         items = items.map {
             it.toDomain()
         }

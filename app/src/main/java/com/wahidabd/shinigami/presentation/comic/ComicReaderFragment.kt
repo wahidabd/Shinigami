@@ -1,7 +1,6 @@
 package com.wahidabd.shinigami.presentation.comic
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
@@ -41,8 +40,6 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
 
     override fun initUI() {
         with(binding) {
-            toolbar.setTitle(args.title)
-
             rvReader.apply {
                 adapter = mAdapter
                 layoutManager = LinearLayoutManager(requireContext())
@@ -72,6 +69,7 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
                 showToast(message.toString())
             },
             onSuccess = {
+                binding.toolbar.setTitle(it.title.toString())
                 mAdapter.setData = it.items
             },
         )
@@ -85,18 +83,10 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
                         if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_SETTLING){
                             when {
                                 dy > 0 -> {
-                                    val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                                    toolbar.apply {
-                                        gone()
-                                        startAnimation(anim)
-                                    }
+                                    toolbar.gone()
                                 }
                                 dy < 0 -> {
-                                    val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
-                                    toolbar.apply {
-                                        visible()
-                                        startAnimation(anim)
-                                    }
+                                    toolbar.visible()
                                 }
                             }
                         }

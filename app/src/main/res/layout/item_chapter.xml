@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         tools:text="Chapter 3"
         android:fontFamily="@font/poppins_medium"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="4 minute ago" />
