@@ -13,6 +13,7 @@
         <attr name="title" format="string"/>
         <attr name="imgMain" format="reference"/>
         <attr name="imgSecond" format="reference"/>
+        <attr name="isNavigationEnable" format="boolean"/>
         <attr name="toolbarType" format="enum">
             <enum name="primary" value="0"/>
             <enum name="transparant" value="1"/>

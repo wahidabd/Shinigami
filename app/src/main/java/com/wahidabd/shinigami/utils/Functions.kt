@@ -1,9 +1,12 @@
 package com.wahidabd.shinigami.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -17,6 +20,12 @@ import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.visible
 import com.wahidabd.shinigami.R
 import java.io.File
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 
 /**
@@ -71,4 +80,14 @@ fun View.animateTranslationY(alpha: Float){
         .translationY(this.height.toFloat())
         .alpha(alpha)
         .duration = 200
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun currentTimestamp(): String {
+    val date = DateTimeFormatter
+        .ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+        .withZone(ZoneId.systemDefault())
+        .format(Instant.now())
+
+    return date.toString()
 }

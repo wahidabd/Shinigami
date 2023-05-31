@@ -1,4 +1,4 @@
-package com.wahidabd.shinigami.presentation.favorite
+package com.wahidabd.shinigami.presentation.favorite.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -28,7 +28,7 @@ class FavoriteAdapter(
         return ItemComicBinding.inflate(LayoutInflater.from(context), parent, false)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(getViewBinding(parent, viewType))
     }
 

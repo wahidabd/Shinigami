@@ -80,5 +80,11 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="slug"
+            app:argType="string" />
+        <argument
+            android:name="poster"
+            app:argType="string" />
     </fragment>
 </navigation>

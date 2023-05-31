@@ -1,6 +1,5 @@
-package com.wahidabd.shinigami.data.favorite.note
+package com.wahidabd.shinigami.data.favorite.dao
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

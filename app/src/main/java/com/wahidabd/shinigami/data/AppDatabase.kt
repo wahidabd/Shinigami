@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.wahidabd.shinigami.data.favorite.note.FavoriteDao
-import com.wahidabd.shinigami.data.favorite.note.FavoriteEntity
+import com.wahidabd.shinigami.data.favorite.dao.FavoriteDao
+import com.wahidabd.shinigami.data.favorite.dao.FavoriteEntity
+import com.wahidabd.shinigami.data.history.dao.HistoryDao
+import com.wahidabd.shinigami.data.history.dao.HistoryEntity
 
 
 /**
@@ -14,10 +16,11 @@ import com.wahidabd.shinigami.data.favorite.note.FavoriteEntity
  */
 
 
-@Database(entities = [FavoriteEntity::class], version = 1, exportSchema = false)
+@Database(entities = [FavoriteEntity::class, HistoryEntity::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): FavoriteDao
+    abstract fun historyDao(): HistoryDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -25,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun getDatabase(context: Context): AppDatabase {
             if (INSTANCE == null){
                 INSTANCE = Room
-                    .databaseBuilder(context.applicationContext, AppDatabase::class.java, "favorite")
+                    .databaseBuilder(context.applicationContext, AppDatabase::class.java, "shinigami.db")
                     .fallbackToDestructiveMigration()
                     .build()
             }

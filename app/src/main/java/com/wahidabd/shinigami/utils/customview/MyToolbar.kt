@@ -3,10 +3,14 @@ package com.wahidabd.shinigami.utils.customview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginStart
+import androidx.core.view.setMargins
 import com.google.android.material.appbar.MaterialToolbar
 import com.wahidabd.library.utils.common.emptyString
 import com.wahidabd.library.utils.exts.gone
@@ -34,6 +38,7 @@ class MyToolbar @JvmOverloads constructor(
     private var imgSecond = 0
     private var title = emptyString()
     private var type: ToolbarType = ToolbarType.PRIMARY
+    private var isNavigationBackShow: Boolean = true
 
     private lateinit var toolbar: MaterialToolbar
 
@@ -48,6 +53,7 @@ class MyToolbar @JvmOverloads constructor(
         imgMain = attributes.getResourceId(R.styleable.MyToolbar_imgMain, 0)
         imgSecond = attributes.getResourceId(R.styleable.MyToolbar_imgSecond, 0)
         title = attributes.getString(R.styleable.MyToolbar_title).orEmpty()
+        isNavigationBackShow = attributes.getBoolean(R.styleable.MyToolbar_isNavigationEnable, true)
         type = attributes.getInteger(R.styleable.MyToolbar_toolbarType, 0)
             .let { ToolbarType.values()[it] }
         attributes.recycle()
@@ -57,6 +63,10 @@ class MyToolbar @JvmOverloads constructor(
         with(binding) {
             this@MyToolbar.toolbar = toolbar
             tvTitle.text = title
+            toolbar.navigationIcon = null
+
+            if (!isNavigationBackShow) iconBack.gone()
+            else iconBack.visible()
 
             when(type){
                 ToolbarType.PRIMARY -> setBackgroundPrimary()
@@ -73,18 +83,6 @@ class MyToolbar @JvmOverloads constructor(
     fun enableTitle(state: Boolean){
         if (state) binding.tvTitle.visible()
         else binding.tvTitle.gone()
-    }
-
-    fun enableIcon(state: Boolean) = with(binding) {
-        if (state) {
-            toolbar.gone()
-            iconMain.gone()
-            iconSecondary.gone()
-        } else {
-            toolbar.visible()
-            iconMain.visible()
-            iconSecondary.visible()
-        }
     }
 
     private fun setBackgroundOpacity() {
@@ -120,7 +118,8 @@ class MyToolbar @JvmOverloads constructor(
     }
 
     fun setEnableBack(onClick: (() -> Unit)?){
-        binding.toolbar.setNavigationOnClickListener {
+        binding.iconBack.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_arrow_left))
+        binding.iconBack.onClick {
             onClick?.invoke()
         }
     }

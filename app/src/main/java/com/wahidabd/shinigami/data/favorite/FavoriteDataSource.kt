@@ -1,8 +1,7 @@
 package com.wahidabd.shinigami.data.favorite
 
-import com.wahidabd.library.data.LocalDb
-import com.wahidabd.shinigami.data.favorite.note.FavoriteDao
-import com.wahidabd.shinigami.data.favorite.note.FavoriteEntity
+import com.wahidabd.shinigami.data.favorite.dao.FavoriteDao
+import com.wahidabd.shinigami.data.favorite.dao.FavoriteEntity
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 

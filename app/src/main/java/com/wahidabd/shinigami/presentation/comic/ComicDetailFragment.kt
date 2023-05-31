@@ -35,12 +35,13 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
     private var isFavorite = false
 
     private var title = emptyString()
+    private var poster = emptyString()
 
     private val adapter by lazy {
         ChapterAdapter(
             requireContext(),
             onItemClicked = {
-                navToReader(it, title)
+                navToReader(it, title, poster)
             }
         )
     }
@@ -109,6 +110,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
             onSuccess = {
                 binding.msvDetail.showDefaultState()
                 title = it.title.toString()
+                poster = it.imagePoster.toString()
                 setupHeader(it)
                 adapter.setData = it.chapters as List<Chapter>
                 genreAdapter.setData = it.genres as List<String>
@@ -173,9 +175,9 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
         else setIconMain(R.drawable.ic_favorite_outline)
     }
 
-    private fun navToReader(ch: String, title: String) {
+    private fun navToReader(ch: String, title: String, poster: String) {
         findNavController().navigate(
-            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(ch, title)
+            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(ch, title, args.slug, poster)
         )
     }
 }

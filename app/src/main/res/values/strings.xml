@@ -17,5 +17,7 @@
     <string name="label_author">Author:</string>
     <string name="label">Ongoing:</string>
     <string name="genres">Genres:</string>
+    <string name="item_position">%s/%s</string>
     <string name="message_success_add_favorite">Success add to favorite</string>
+    <string name="format_status_history">Ch. %s - %s</string>
 </resources>

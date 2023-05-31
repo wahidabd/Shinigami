@@ -1,7 +1,7 @@
 package com.wahidabd.shinigami.domain.favorite.model
 
 import com.wahidabd.library.utils.common.emptyString
-import com.wahidabd.shinigami.data.favorite.note.FavoriteEntity
+import com.wahidabd.shinigami.data.favorite.dao.FavoriteEntity
 
 
 /**
