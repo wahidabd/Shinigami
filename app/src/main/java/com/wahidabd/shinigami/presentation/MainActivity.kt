@@ -1,5 +1,7 @@
 package com.wahidabd.shinigami.presentation
 
+import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +14,12 @@ import com.wahidabd.shinigami.databinding.ActivityMainBinding
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
 
     override fun getViewBinding(): ActivityMainBinding =
         ActivityMainBinding.inflate(layoutInflater)
@@ -37,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     R.id.historyFragment,
                     R.id.libraryFragment,
                     R.id.moreFragment -> bottomNav.visible()
+
                     else -> bottomNav.gone()
                 }
             }

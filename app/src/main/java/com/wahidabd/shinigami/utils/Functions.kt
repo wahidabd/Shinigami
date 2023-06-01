@@ -18,6 +18,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.signature.ObjectKey
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wahidabd.library.utils.common.getApplicationSignature
+import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.visible
 import com.wahidabd.shinigami.R
@@ -28,6 +29,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
 import java.util.Date
 
 
@@ -112,4 +114,17 @@ fun showMaterialAlert(
         .setPositiveButton("OK") { dialog, _ ->
             positiveButton?.invoke(dialog)
         }
+}
+
+
+fun TextView.greeting() {
+    val currentHour = Calendar.getInstance().get(Calendar.HOUR)
+
+    this.text = when (currentHour) {
+        in 0..11 -> resources.getString(R.string.label_morning)
+        in 12 .. 15 -> resources.getString(R.string.label_afternoon)
+        in 16 .. 21 -> resources.getString(R.string.label_afternoon)
+        in 21 .. 23 -> resources.getString(R.string.label_afternoon)
+        else -> ""
+    }
 }

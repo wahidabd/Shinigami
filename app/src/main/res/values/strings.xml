@@ -20,4 +20,9 @@
     <string name="item_position">%s/%s</string>
     <string name="message_success_add_favorite">Success add to favorite</string>
     <string name="format_status_history">Ch. %s - %s</string>
+    <string name="login">Login</string>
+    <string name="label_afternoon">Good Afternoon</string>
+    <string name="label_morning">Good Morning</string>
+    <string name="label_evening">Good Evening</string>
+    <string name="label_night">Good Night</string>
 </resources>

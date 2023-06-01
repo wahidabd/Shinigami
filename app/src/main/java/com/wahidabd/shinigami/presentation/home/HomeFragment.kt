@@ -21,10 +21,16 @@ import com.wahidabd.shinigami.utils.Constant.LATEST_COMIC
 import com.wahidabd.shinigami.utils.Constant.MIRROR_COMIC
 import com.wahidabd.shinigami.utils.Constant.TRENDING_COMIC
 import com.wahidabd.shinigami.utils.Constant.orderMirror
+import com.wahidabd.shinigami.utils.circularProgress
+import com.wahidabd.shinigami.utils.greeting
+import com.wahidabd.shinigami.utils.pref.PreferenceManager
+import com.wahidabd.shinigami.utils.setImageReader
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
+    private val prefs: PreferenceManager by inject()
     private val viewModel: HomeViewModel by viewModel()
 
     private val recommendedAdapter by lazy {
@@ -64,6 +70,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initUI() {
         with(binding) {
+
+            val user = prefs.getUser()
+            val circular = requireContext().circularProgress()
+            imgAvatar.setImageReader(user.avatar.toString(), circular)
+            tvName.text = user.name
+            tvStatus.greeting()
 
             rvRecommended.apply {
                 adapter = recommendedAdapter

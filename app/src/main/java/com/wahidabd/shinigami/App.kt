@@ -1,6 +1,7 @@
 package com.wahidabd.shinigami
 
 import com.wahidabd.library.presentation.BaseApplication
+import com.wahidabd.shinigami.di.appModule
 import com.wahidabd.shinigami.di.dbModule
 import com.wahidabd.shinigami.di.feature.comicModule
 import com.wahidabd.shinigami.di.feature.favoriteModule
@@ -21,6 +22,7 @@ class App : BaseApplication() {
 
     override fun getDefineModule(): List<Module> {
         return listOf(
+            appModule,
             rxModule,
             dbModule,
             homeModule,

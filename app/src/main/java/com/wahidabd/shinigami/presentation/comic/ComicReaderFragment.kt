@@ -14,6 +14,7 @@ import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.extensions.debug
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.observerLiveData
+import com.wahidabd.library.utils.exts.onClick
 import com.wahidabd.library.utils.exts.visible
 import com.wahidabd.shinigami.databinding.FragmentComicReaderBinding
 import com.wahidabd.shinigami.domain.history.model.History
@@ -27,7 +28,6 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
     private val historyViewModel: HistoryViewModel by viewModel()
     private val args: ComicReaderFragmentArgs by navArgs()
 
-    private var isRead: Boolean = false
     @RequiresApi(Build.VERSION_CODES.O)
     private var history = History()
 
@@ -61,6 +61,10 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
     override fun initAction() {
         binding.apply {
             toolbar.setEnableBack { findNavController().navigateUp() }
+            rvReader.onClick {
+                toolbar.visible()
+                llBottom.visible()
+            }
         }
     }
 
@@ -77,7 +81,7 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
             onFailure = { _, message ->
                 showToast(message.toString())
             },
-            onSuccess = {
+            onSuccess = {3
                 binding.toolbar.setTitle(it.title.toString())
                 mAdapter.setData = it.items
 
@@ -102,13 +106,13 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun setHistory(history: History){
+    private fun setHistory(history: History) {
         historyViewModel.get(args.slug)
 
         historyViewModel.get.observerLiveData(viewLifecycleOwner,
             onEmpty = {},
             onLoading = {},
-            onFailure = {_, _ ->
+            onFailure = { _, _ ->
                 historyViewModel.save(history)
             },
             onSuccess = {
