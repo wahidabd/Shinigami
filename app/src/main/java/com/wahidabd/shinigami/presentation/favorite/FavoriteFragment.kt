@@ -10,13 +10,14 @@ import com.wahidabd.library.utils.extensions.showDefaultState
 import com.wahidabd.library.utils.extensions.showEmptyState
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.databinding.FragmentFavoriteBinding
+import com.wahidabd.shinigami.domain.favorite.model.Favorite
 import com.wahidabd.shinigami.presentation.favorite.adapter.FavoriteAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
+    private val list = ArrayList<Favorite>()
     private val viewModel: FavoriteViewModel by viewModel()
-
     private val mAdapter by lazy {
         FavoriteAdapter(
             requireContext(),
@@ -36,7 +37,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         return FragmentFavoriteBinding.inflate(layoutInflater)
     }
 
-    override fun initUI(){
+    override fun initUI() {
         binding.rvFavorite.apply {
             adapter = mAdapter
             itemAnimator = DefaultItemAnimator()
@@ -52,15 +53,18 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     override fun initObservers() {
         viewModel.getFavorites.observerLiveData(viewLifecycleOwner,
             onLoading = {},
-            onFailure = {_, m ->
+            onFailure = { _, m ->
                 showToast(m.toString())
             },
             onEmpty = {
                 binding.msv.showEmptyState()
+                list.clear()
             },
             onSuccess = {
                 binding.msv.showDefaultState()
-                mAdapter.setData = it
+                list.clear()
+                list.addAll(it)
+                mAdapter.setData = list
             }
         )
     }

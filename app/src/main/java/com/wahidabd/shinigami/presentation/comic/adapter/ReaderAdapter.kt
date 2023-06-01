@@ -23,7 +23,7 @@ import com.wahidabd.shinigami.utils.setImageReader
 
 class ReaderAdapter(
     private val context: Context,
-    items: List<ContentReader> = mutableListOf(),
+    items: ArrayList<ContentReader> = arrayListOf(),
     private val onClicked: (() -> Unit)? = null
 ) : BaseAsyncRecyclerAdapter<ContentReader, ReaderAdapter.ViewHolder>(items) {
 

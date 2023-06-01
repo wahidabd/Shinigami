@@ -20,7 +20,7 @@ import com.wahidabd.shinigami.domain.comic.model.ComicDetail
 
 class ChapterAdapter(
     private val context: Context,
-    items: List<Chapter> = mutableListOf(),
+    items: ArrayList<Chapter> = arrayListOf(),
     private val onItemClicked: ((String) -> Unit)?
 ) : BaseAsyncRecyclerAdapter<Chapter, ChapterAdapter.ViewHolder>(items) {
 

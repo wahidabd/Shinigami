@@ -20,7 +20,7 @@ import com.wahidabd.shinigami.domain.favorite.model.Favorite
 
 class FavoriteAdapter(
     private val context: Context,
-    items: List<Favorite> = mutableListOf(),
+    items: ArrayList<Favorite> = arrayListOf(),
     private val onItemClicked: ((String) -> Unit)
 ) : BaseAsyncRecyclerAdapter<Favorite, FavoriteAdapter.ViewHolder>(items){
 

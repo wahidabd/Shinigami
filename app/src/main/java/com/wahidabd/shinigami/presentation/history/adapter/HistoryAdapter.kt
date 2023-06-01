@@ -1,5 +1,6 @@
 package com.wahidabd.shinigami.presentation.history.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ import com.wahidabd.shinigami.utils.setImageReader
 
 class HistoryAdapter(
     private val context: Context,
-    items: List<History> = mutableListOf(),
+    items: ArrayList<History> = arrayListOf(),
     private val onItemClicked: ((String) -> Unit),
     private val onItemRemoved: ((History) -> Unit)
 ) : BaseAsyncRecyclerAdapter<History, HistoryAdapter.ViewHolder>(items) {
@@ -41,7 +42,7 @@ class HistoryAdapter(
             val circular = context.circularProgress()
             imgPoster.setImageReader(data.poster.toString(), circular)
             tvTitle.text = data.title
-            tvStatus.text = context.getString(R.string.format_status_history, data.chapter_title, "")
+            tvStatus.text = context.getString(R.string.format_status_history, data.chapter_title, data.date)
 
             container.onClick { onItemClicked.invoke(data.slug.toString()) }
             imgDelete.onClick { onItemRemoved.invoke(data) }

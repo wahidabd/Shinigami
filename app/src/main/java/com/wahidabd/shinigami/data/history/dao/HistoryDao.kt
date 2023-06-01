@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.core.Single
 @Dao
 abstract class HistoryDao : RxLocalDb<HistoryEntity> {
 
-    @Query("SELECT * FROM history")
+    @Query("SELECT * FROM history ORDER BY date DESC")
     abstract override fun getList(): Single<List<HistoryEntity>>
 
     @Query("SELECT * FROM history WHERE slug = :slug")

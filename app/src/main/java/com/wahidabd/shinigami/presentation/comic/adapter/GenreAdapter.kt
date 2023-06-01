@@ -17,7 +17,7 @@ import com.wahidabd.shinigami.databinding.ItemGenreBinding
 
 class GenreAdapter(
     private val context: Context,
-    items: List<String> = mutableListOf()
+    items: ArrayList<String> = arrayListOf()
 ) : BaseAsyncRecyclerAdapter<String, GenreAdapter.ViewHolder>(items) {
 
     override fun getViewBinding(parent: ViewGroup, viewType: Int): ViewBinding {

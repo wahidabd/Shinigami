@@ -8,7 +8,9 @@ import com.wahidabd.library.utils.extensions.showDefaultState
 import com.wahidabd.library.utils.extensions.showEmptyState
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.databinding.FragmentHistoryBinding
+import com.wahidabd.shinigami.domain.history.model.History
 import com.wahidabd.shinigami.presentation.history.adapter.HistoryAdapter
+import com.wahidabd.shinigami.utils.showMaterialAlert
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
@@ -19,10 +21,11 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             requireContext(),
             onItemClicked = {},
             onItemRemoved = {
-                viewModel.remove(it)
+                alert(it)
             }
         )
     }
+
 
     override fun getViewBinding(
         layoutInflater: LayoutInflater,
@@ -33,7 +36,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     }
 
     override fun initUI() {
-        with(binding){
+        with(binding) {
             rvHistory.apply {
                 adapter = mAdapter
             }
@@ -60,6 +63,22 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                 mAdapter.setData = it
             }
         )
+    }
+
+    private fun alert(data: History) {
+        showMaterialAlert(
+            requireContext(),
+            "Remove",
+            "Remove ${data.title} from history?",
+            positiveButton = {
+                viewModel.remove(data)
+                it.dismiss()
+                viewModel.list()
+            },
+            negativeButton = {
+                it.dismiss()
+            }
+        ).show()
     }
 
 }

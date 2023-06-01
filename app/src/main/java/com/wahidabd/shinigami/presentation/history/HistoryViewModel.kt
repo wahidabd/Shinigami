@@ -52,7 +52,8 @@ class HistoryViewModel(
 
         useCase.list().compose(singleScheduler())
             .subscribe({
-                _list.value = Resource.success(it)
+                if (it.isEmpty()) _list.value = Resource.empty()
+                else _list.value = Resource.success(it)
             }, { genericErrorHandler(it, _list) })
             .addTo(disposable)
     }

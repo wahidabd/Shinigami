@@ -2,6 +2,7 @@ package com.wahidabd.shinigami.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Build
 import android.view.View
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.signature.ObjectKey
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wahidabd.library.utils.common.getApplicationSignature
 import com.wahidabd.library.utils.exts.gone
 import com.wahidabd.library.utils.exts.visible
@@ -22,6 +24,7 @@ import com.wahidabd.shinigami.R
 import java.io.File
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -45,8 +48,8 @@ fun TextView.setTypeBackground(context: Context, type: String) {
     }
 }
 
-fun View.visibleIf(condition: () -> Boolean){
-    if (this.visibility != View.FOCUSABLES_ALL && condition.invoke()){
+fun View.visibleIf(condition: () -> Boolean) {
+    if (this.visibility != View.FOCUSABLES_ALL && condition.invoke()) {
         this.visible()
     }
 }
@@ -61,7 +64,7 @@ fun Context.circularProgress(): CircularProgressDrawable {
     return circular
 }
 
-fun ImageView.setImageReader(image: String, progressDrawable: CircularProgressDrawable){
+fun ImageView.setImageReader(image: String, progressDrawable: CircularProgressDrawable) {
 
     val requestOptions = RequestOptions()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -75,7 +78,7 @@ fun ImageView.setImageReader(image: String, progressDrawable: CircularProgressDr
         .into(this)
 }
 
-fun View.animateTranslationY(alpha: Float){
+fun View.animateTranslationY(alpha: Float) {
     this.animate()
         .translationY(this.height.toFloat())
         .alpha(alpha)
@@ -85,9 +88,28 @@ fun View.animateTranslationY(alpha: Float){
 @RequiresApi(Build.VERSION_CODES.O)
 fun currentTimestamp(): String {
     val date = DateTimeFormatter
-        .ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+        .ofPattern("yyyy/MM/dd HH:mm")
         .withZone(ZoneId.systemDefault())
         .format(Instant.now())
 
     return date.toString()
+}
+
+fun showMaterialAlert(
+    context: Context,
+    title: String,
+    message: String,
+    positiveButton: ((DialogInterface) -> Unit)? = null,
+    negativeButton: ((DialogInterface) -> Unit)? = null
+): MaterialAlertDialogBuilder {
+    return MaterialAlertDialogBuilder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setCancelable(false)
+        .setNegativeButton("Cancel") { dialog, _ ->
+            negativeButton?.invoke(dialog)
+        }
+        .setPositiveButton("OK") { dialog, _ ->
+            positiveButton?.invoke(dialog)
+        }
 }

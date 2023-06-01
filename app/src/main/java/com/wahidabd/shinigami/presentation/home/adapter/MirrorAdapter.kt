@@ -20,7 +20,7 @@ import com.wahidabd.shinigami.domain.home.model.Comic
 
 class MirrorAdapter(
     private val context: Context,
-    items: List<Comic> = mutableListOf(),
+    items: ArrayList<Comic> = arrayListOf(),
     private val onItemClicked: ((String) -> Unit)?
 ) : BaseAsyncRecyclerAdapter<Comic, MirrorAdapter.ViewHolder>(items) {
 
