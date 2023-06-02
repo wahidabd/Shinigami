@@ -5,7 +5,7 @@ import androidx.paging.rxjava3.RxPagingSource
 import com.wahidabd.library.utils.extensions.debug
 import com.wahidabd.library.utils.rx.paging.apiToLoadResult
 import com.wahidabd.shinigami.data.home.model.ComicItem
-import com.wahidabd.shinigami.utils.Constant
+import com.wahidabd.shinigami.utils.constant.Constant
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jsoup.Jsoup

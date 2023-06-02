@@ -13,8 +13,7 @@ import com.wahidabd.shinigami.data.comic.model.ComicDetailItem
 import com.wahidabd.shinigami.data.comic.model.ContentReaderItem
 import com.wahidabd.shinigami.data.comic.model.ReaderItem
 import com.wahidabd.shinigami.data.home.model.ComicItem
-import com.wahidabd.shinigami.domain.comic.model.ContentReader
-import com.wahidabd.shinigami.utils.Constant
+import com.wahidabd.shinigami.utils.constant.Constant
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup

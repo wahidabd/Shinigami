@@ -4,6 +4,7 @@ import com.wahidabd.library.presentation.BaseApplication
 import com.wahidabd.shinigami.di.appModule
 import com.wahidabd.shinigami.di.dbModule
 import com.wahidabd.shinigami.di.feature.comicModule
+import com.wahidabd.shinigami.di.feature.commentModule
 import com.wahidabd.shinigami.di.feature.favoriteModule
 import com.wahidabd.shinigami.di.feature.historyModule
 import com.wahidabd.shinigami.di.feature.homeModule
@@ -28,7 +29,8 @@ class App : BaseApplication() {
             homeModule,
             comicModule,
             favoriteModule,
-            historyModule
+            historyModule,
+            commentModule
         )
     }
 

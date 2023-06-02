@@ -130,9 +130,10 @@
                         tools:listitem="@layout/item_card_comic"
                         tools:itemCount="1"
                         android:layout_marginTop="8dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="@dimen/dimen_6dp"
-                        android:clipToPadding="false"/>
+                        android:paddingStart="16dp"
+                        android:paddingEnd="@dimen/dimen_6dp"
+                        android:clipToPadding="false"
+                        tools:ignore="RtlSymmetry" />
 
                     <LinearLayout
                         android:id="@+id/trendingContainer"
@@ -169,8 +170,8 @@
                         tools:listitem="@layout/item_card_comic"
                         tools:itemCount="1"
                         android:layout_marginTop="8dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="@dimen/dimen_6dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="@dimen/dimen_6dp"
                         android:clipToPadding="false"/>
 
                     <LinearLayout
@@ -208,9 +209,9 @@
                         tools:listitem="@layout/item_card_comic"
                         tools:itemCount="1"
                         android:layout_marginTop="8dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="@dimen/dimen_6dp"
-                        android:layout_marginBottom="24dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="@dimen/dimen_6dp"
+                        android:paddingBottom="24dp"
                         android:clipToPadding="false"/>
 
                 </LinearLayout>

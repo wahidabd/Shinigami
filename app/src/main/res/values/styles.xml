@@ -6,4 +6,15 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
+    
+    <style name="BottomDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalDialogTheme</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateAlwaysVisible</item>
+    </style>
+
+    <style name="ModalDialogTheme" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+    
 </resources>

@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.library.presentation.fragment.BaseFragment
 import com.wahidabd.library.utils.common.showToast
-import com.wahidabd.library.utils.extensions.debug
 import com.wahidabd.library.utils.extensions.showDefaultState
 import com.wahidabd.library.utils.extensions.showLoadingState
 import com.wahidabd.library.utils.exts.observerLiveData
@@ -16,11 +15,11 @@ import com.wahidabd.shinigami.presentation.home.adapter.LatestAdapter
 import com.wahidabd.shinigami.presentation.home.adapter.MirrorAdapter
 import com.wahidabd.shinigami.presentation.home.adapter.RecommendedAdapter
 import com.wahidabd.shinigami.presentation.home.adapter.TrendingAdapter
-import com.wahidabd.shinigami.utils.Constant
-import com.wahidabd.shinigami.utils.Constant.LATEST_COMIC
-import com.wahidabd.shinigami.utils.Constant.MIRROR_COMIC
-import com.wahidabd.shinigami.utils.Constant.TRENDING_COMIC
-import com.wahidabd.shinigami.utils.Constant.orderMirror
+import com.wahidabd.shinigami.utils.constant.Constant
+import com.wahidabd.shinigami.utils.constant.Constant.LATEST_COMIC
+import com.wahidabd.shinigami.utils.constant.Constant.MIRROR_COMIC
+import com.wahidabd.shinigami.utils.constant.Constant.TRENDING_COMIC
+import com.wahidabd.shinigami.utils.constant.Constant.orderMirror
 import com.wahidabd.shinigami.utils.circularProgress
 import com.wahidabd.shinigami.utils.greeting
 import com.wahidabd.shinigami.utils.pref.PreferenceManager

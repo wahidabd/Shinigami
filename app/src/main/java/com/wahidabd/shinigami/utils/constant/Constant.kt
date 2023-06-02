@@ -1,4 +1,4 @@
-package com.wahidabd.shinigami.utils
+package com.wahidabd.shinigami.utils.constant
 
 import androidx.fragment.app.Fragment
 import com.wahidabd.shinigami.presentation.comic.ComicFragment

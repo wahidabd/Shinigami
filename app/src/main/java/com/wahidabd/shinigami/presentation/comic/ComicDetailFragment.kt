@@ -21,6 +21,7 @@ import com.wahidabd.shinigami.domain.comic.model.ComicDetail
 import com.wahidabd.shinigami.domain.favorite.model.Favorite
 import com.wahidabd.shinigami.presentation.comic.adapter.ChapterAdapter
 import com.wahidabd.shinigami.presentation.comic.adapter.GenreAdapter
+import com.wahidabd.shinigami.presentation.comment.CommentBottomSheet
 import com.wahidabd.shinigami.presentation.favorite.FavoriteViewModel
 import com.wahidabd.shinigami.utils.customview.setResizableText
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -88,6 +89,9 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
         with(binding) {
             toolbarContainer.setEnableBack { findNavController().navigateUp() }
             toolbarContainer.setImageMainEnable { setFavorite() }
+            toolbarContainer.setImageSecondaryEnable {
+                CommentBottomSheet.newInstance(args.slug).showBottomSheet(parentFragmentManager)
+            }
         }
     }
 
@@ -127,7 +131,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
         favoriteViewModel.add.observerLiveData(viewLifecycleOwner,
             onEmpty = {},
-            onFailure = {_, m ->
+            onFailure = { _, m ->
                 showToast(m.toString())
             },
             onLoading = {},
@@ -137,7 +141,7 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
         favoriteViewModel.get.observerLiveData(viewLifecycleOwner,
             onEmpty = {},
             onLoading = {},
-            onFailure = {_,_ ->
+            onFailure = { _, _ ->
                 isFavorite = false
                 checkFavorite()
             },
@@ -177,7 +181,12 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
 
     private fun navToReader(ch: String, title: String, poster: String) {
         findNavController().navigate(
-            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(ch, title, args.slug, poster)
+            ComicDetailFragmentDirections.actionComicDetailFragmentToComicReaderFragment(
+                ch,
+                title,
+                args.slug,
+                poster
+            )
         )
     }
 }

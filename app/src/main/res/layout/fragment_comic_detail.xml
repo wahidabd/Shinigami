@@ -86,5 +86,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         app:imgMain="@drawable/ic_favorite_outline"
+        app:imgSecond="@drawable/ic_message"
         app:toolbarType="transparant"/>
 </RelativeLayout>

@@ -3,8 +3,8 @@ package com.wahidabd.shinigami.data.home
 import com.wahidabd.library.data.LocalDb
 import com.wahidabd.library.data.WebApi
 import com.wahidabd.shinigami.data.home.model.ComicItem
-import com.wahidabd.shinigami.utils.Constant
-import com.wahidabd.shinigami.utils.Constant.attrSrc
+import com.wahidabd.shinigami.utils.constant.Constant
+import com.wahidabd.shinigami.utils.constant.Constant.attrSrc
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
 

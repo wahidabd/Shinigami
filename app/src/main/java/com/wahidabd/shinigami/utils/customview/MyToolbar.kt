@@ -64,6 +64,7 @@ class MyToolbar @JvmOverloads constructor(
             this@MyToolbar.toolbar = toolbar
             tvTitle.text = title
             toolbar.navigationIcon = null
+            iconSecondary.setImageResource(imgSecond)
 
             if (!isNavigationBackShow) iconBack.gone()
             else iconBack.visible()
@@ -137,6 +138,7 @@ class MyToolbar @JvmOverloads constructor(
     }
 
     fun setImageSecondaryEnable(onClick: (() -> Unit)?) {
+        binding.iconSecondary.visible()
         binding.iconSecondary.onClick {
             onClick?.invoke()
         }

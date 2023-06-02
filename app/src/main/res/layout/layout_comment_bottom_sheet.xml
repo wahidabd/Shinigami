@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginHorizontal="120dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_round_white_4" />
+
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/msv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:msv_emptyView="@layout/layout_empty"
+        app:msv_loadingView="@layout/layout_loading">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="6dp"
+            android:clipToPadding="false"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            tools:listitem="@layout/item_comment" />
+
+    </com.kennyc.view.MultiStateView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBlue"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <EditText
+            android:id="@+id/ed_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/comment"
+            android:inputType="textImeMultiLine"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textColorHint="@color/colorGray"
+            android:textSize="14sp" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="1dp"
+            android:layout_height="26dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/darkGray" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_send"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?selectableItemBackground"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_send" />
+
+    </LinearLayout>
+
+</LinearLayout>

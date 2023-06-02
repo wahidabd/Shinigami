@@ -25,4 +25,5 @@
     <string name="label_morning">Good Morning</string>
     <string name="label_evening">Good Evening</string>
     <string name="label_night">Good Night</string>
+    <string name="comment">Comment</string>
 </resources>

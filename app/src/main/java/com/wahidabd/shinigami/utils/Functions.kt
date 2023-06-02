@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Build
+import android.provider.Settings.Secure
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,6 +32,8 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
+import kotlin.math.abs
+import kotlin.random.Random
 
 
 /**
@@ -127,4 +130,12 @@ fun TextView.greeting() {
         in 21 .. 23 -> resources.getString(R.string.label_afternoon)
         else -> ""
     }
+}
+
+@SuppressLint("HardwareIds")
+@RequiresApi(Build.VERSION_CODES.O)
+fun Context.randomUUID(): String {
+    val random = abs(Random(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)).nextLong())
+    val deviceId = Secure.getString(this.contentResolver,Secure.ANDROID_ID)
+    return "$deviceId-$random"
 }
