@@ -6,6 +6,7 @@ import com.wahidabd.library.data.Resource
 import com.wahidabd.library.presentation.BaseViewModel
 import com.wahidabd.library.utils.exts.addTo
 import com.wahidabd.library.utils.rx.apihandlers.genericErrorHandler
+import com.wahidabd.library.utils.rx.transformers.observerScheduler
 import com.wahidabd.library.utils.rx.transformers.singleScheduler
 import com.wahidabd.shinigami.domain.comment.CommentUseCase
 import com.wahidabd.shinigami.domain.comment.model.Comment
@@ -47,7 +48,7 @@ class CommentViewModel(
     fun list(slug: String) {
         _list.value = Resource.loading()
 
-        useCase.list(slug).compose(singleScheduler())
+        useCase.list(slug).compose(observerScheduler())
             .subscribe({
                 if (it.isEmpty()) _list.value = Resource.empty()
                 else _list.value = Resource.success(it)

@@ -13,7 +13,6 @@ import com.wahidabd.library.utils.common.emptyString
 import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.extensions.debug
 import com.wahidabd.library.utils.extensions.showDefaultState
-import com.wahidabd.library.utils.extensions.showEmptyState
 import com.wahidabd.library.utils.extensions.showLoadingState
 import com.wahidabd.library.utils.exts.clear
 import com.wahidabd.library.utils.exts.observerLiveData
@@ -65,7 +64,8 @@ class CommentBottomSheet : BaseBottomSheetDialogFragment<LayoutCommentBottomShee
 
         binding.rvComment.apply {
             adapter = mAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
             itemAnimator = DefaultItemAnimator()
         }
     }

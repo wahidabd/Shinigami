@@ -1,6 +1,7 @@
 package com.wahidabd.shinigami.domain.comment
 
 import com.wahidabd.shinigami.domain.comment.model.Comment
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
 
@@ -13,5 +14,5 @@ import io.reactivex.rxjava3.core.Single
 interface CommentUseCase {
     fun add(data: Comment): Single<Boolean>
 //    fun update(data: CommentItem): Single<Boolean>
-    fun list(slug: String): Single<List<Comment>>
+    fun list(slug: String): Observable<List<Comment>>
 }

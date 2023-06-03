@@ -2,6 +2,7 @@ package com.wahidabd.shinigami.data.comment
 
 import com.wahidabd.shinigami.data.comment.model.CommentItem
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
 
@@ -14,5 +15,5 @@ import io.reactivex.rxjava3.core.Single
 interface CommentRepository {
     fun add(data: CommentItem): Single<Boolean>
 //    fun update(data: CommentItem): Single<Boolean>
-    fun list(slug: String): Single<List<CommentItem>>
+    fun list(slug: String): Observable<List<CommentItem>>
 }

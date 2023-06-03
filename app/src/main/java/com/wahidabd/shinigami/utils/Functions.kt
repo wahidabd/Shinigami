@@ -121,13 +121,13 @@ fun showMaterialAlert(
 
 
 fun TextView.greeting() {
-    val currentHour = Calendar.getInstance().get(Calendar.HOUR)
+    val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
     this.text = when (currentHour) {
-        in 0..11 -> resources.getString(R.string.label_morning)
-        in 12 .. 15 -> resources.getString(R.string.label_afternoon)
-        in 16 .. 21 -> resources.getString(R.string.label_afternoon)
-        in 21 .. 23 -> resources.getString(R.string.label_afternoon)
+        in 0..9 -> resources.getString(R.string.label_morning)
+        in 10..16 -> resources.getString(R.string.label_afternoon)
+        in 17..20 -> resources.getString(R.string.label_evening)
+        in 21..23 -> resources.getString(R.string.label_night)
         else -> ""
     }
 }
