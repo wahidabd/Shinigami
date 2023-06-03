@@ -62,6 +62,8 @@ class CommentBottomSheet : BaseBottomSheetDialogFragment<LayoutCommentBottomShee
     override fun initUI() {
         slug = arguments?.getString(KEY_SLUG).toString()
 
+        debug { "SLUG = $slug" }
+
         binding.rvComment.apply {
             adapter = mAdapter
             layoutManager =
@@ -144,7 +146,7 @@ class CommentBottomSheet : BaseBottomSheetDialogFragment<LayoutCommentBottomShee
         fun newInstance(slug: String): CommentBottomSheet {
             return CommentBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putString(KEY_SLUG, slug.replace("series/", ""))
+                    putString(KEY_SLUG, slug)
                 }
             }
         }

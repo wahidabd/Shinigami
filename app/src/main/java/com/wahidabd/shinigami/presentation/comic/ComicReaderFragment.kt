@@ -19,7 +19,9 @@ import com.wahidabd.library.utils.exts.visible
 import com.wahidabd.shinigami.databinding.FragmentComicReaderBinding
 import com.wahidabd.shinigami.domain.history.model.History
 import com.wahidabd.shinigami.presentation.comic.adapter.ReaderAdapter
+import com.wahidabd.shinigami.presentation.comment.CommentBottomSheet
 import com.wahidabd.shinigami.presentation.history.HistoryViewModel
+import com.wahidabd.shinigami.utils.replaceSlug
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
@@ -64,6 +66,11 @@ class ComicReaderFragment : BaseFragment<FragmentComicReaderBinding>() {
             rvReader.onClick {
                 toolbar.visible()
                 llBottom.visible()
+            }
+
+            toolbar.setImageMainEnable {
+                CommentBottomSheet.newInstance(args.chapter.replaceSlug().replace("/", "-") + "/")
+                    .showBottomSheet(parentFragmentManager)
             }
         }
     }

@@ -51,7 +51,7 @@ class CommentDataSource : CommentRepository, FirebaseManager() {
 
 
     companion object {
-        const val REF = "comment"
+        const val REF = "comments"
     }
 
 }

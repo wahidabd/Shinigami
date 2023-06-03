@@ -132,6 +132,9 @@ fun TextView.greeting() {
     }
 }
 
+fun String.replaceSlug(): String =
+    this.replace("series/", "")
+
 @SuppressLint("HardwareIds")
 @RequiresApi(Build.VERSION_CODES.O)
 fun Context.randomUUID(): String {

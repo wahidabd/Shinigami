@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
+import com.kennyc.view.MultiStateView
 import com.wahidabd.library.presentation.fragment.BaseFragment
 import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.extensions.showDefaultState
-import com.wahidabd.library.utils.extensions.showEmptyState
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.databinding.FragmentFavoriteBinding
 import com.wahidabd.shinigami.domain.favorite.model.Favorite
@@ -57,7 +57,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
                 showToast(m.toString())
             },
             onEmpty = {
-                binding.msv.showEmptyState()
+                binding.msv.viewState = MultiStateView.ViewState.EMPTY
                 list.clear()
             },
             onSuccess = {

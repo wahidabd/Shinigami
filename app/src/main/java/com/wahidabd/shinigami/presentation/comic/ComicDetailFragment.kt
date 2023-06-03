@@ -24,6 +24,7 @@ import com.wahidabd.shinigami.presentation.comic.adapter.GenreAdapter
 import com.wahidabd.shinigami.presentation.comment.CommentBottomSheet
 import com.wahidabd.shinigami.presentation.favorite.FavoriteViewModel
 import com.wahidabd.shinigami.utils.customview.setResizableText
+import com.wahidabd.shinigami.utils.replaceSlug
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
@@ -90,7 +91,8 @@ class ComicDetailFragment : BaseFragment<FragmentComicDetailBinding>() {
             toolbarContainer.setEnableBack { findNavController().navigateUp() }
             toolbarContainer.setImageMainEnable { setFavorite() }
             toolbarContainer.setImageSecondaryEnable {
-                CommentBottomSheet.newInstance(args.slug).showBottomSheet(parentFragmentManager)
+                CommentBottomSheet.newInstance(args.slug.replaceSlug())
+                    .showBottomSheet(parentFragmentManager)
             }
         }
     }

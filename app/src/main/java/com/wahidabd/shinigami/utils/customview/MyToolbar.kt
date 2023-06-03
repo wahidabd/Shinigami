@@ -62,8 +62,10 @@ class MyToolbar @JvmOverloads constructor(
     private fun setupView() {
         with(binding) {
             this@MyToolbar.toolbar = toolbar
+
             tvTitle.text = title
             toolbar.navigationIcon = null
+            iconMain.setImageResource(imgMain)
             iconSecondary.setImageResource(imgSecond)
 
             if (!isNavigationBackShow) iconBack.gone()

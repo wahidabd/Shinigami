@@ -2,10 +2,10 @@ package com.wahidabd.shinigami.presentation.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.kennyc.view.MultiStateView
 import com.wahidabd.library.presentation.fragment.BaseFragment
 import com.wahidabd.library.utils.common.showToast
 import com.wahidabd.library.utils.extensions.showDefaultState
-import com.wahidabd.library.utils.extensions.showEmptyState
 import com.wahidabd.library.utils.exts.observerLiveData
 import com.wahidabd.shinigami.databinding.FragmentHistoryBinding
 import com.wahidabd.shinigami.domain.history.model.History
@@ -51,10 +51,10 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
     override fun initObservers() {
         viewModel.list.observerLiveData(viewLifecycleOwner,
-            onEmpty = {},
-            onLoading = {
-                binding.msv.showEmptyState()
+            onEmpty = {
+                binding.msv.viewState = MultiStateView.ViewState.EMPTY
             },
+            onLoading = {},
             onFailure = { _, message ->
                 showToast(message.toString())
             },
